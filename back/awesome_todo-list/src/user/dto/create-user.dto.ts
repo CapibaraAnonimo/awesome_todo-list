@@ -15,10 +15,10 @@ export class CreateUserDto {
   @IsString()
   @MinLength(2, { message: 'Name must have atleast 2 characters.' })
   @MaxLength(30, { message: 'Name must have 30 or less characters' })
-  @IsNotEmpty()
+  @IsNotEmpty({ message: 'Name is mandatory' })
   name: string;
 
-  @IsNotEmpty()
+  @IsNotEmpty({ message: 'Username is mandatory' })
   @MinLength(3, { message: 'Username must have atleast 3 characters.' })
   @MaxLength(30, { message: 'Username must have 30 or less characters' })
   @IsAlphanumeric('es-ES', {
@@ -26,13 +26,13 @@ export class CreateUserDto {
   })
   username: string;
 
-  @IsNotEmpty()
+  @IsNotEmpty({ message: 'Password is mandatory' })
   @Matches(passwordRegEx, {
     message: `Password must contain one digit from 1 to 9, one lowercase letter, one uppercase letter, one special character, no space, and it must be 8-16 characters long.`,
   })
   password: string;
 
-  @IsNotEmpty()
+  @IsNotEmpty({ message: 'Email is mandatory' })
   @IsEmail({}, { message: 'Please provide valid Email.' })
   email: string;
 }
