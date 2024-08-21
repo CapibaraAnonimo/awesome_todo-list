@@ -1,8 +1,6 @@
 import {
   IsAlphanumeric,
   IsEmail,
-  IsEnum,
-  IsInt,
   IsNotEmpty,
   IsString,
   Matches,
@@ -23,7 +21,7 @@ export class CreateUserDto {
   @IsNotEmpty()
   @MinLength(3, { message: 'Username must have atleast 3 characters.' })
   @MaxLength(30, { message: 'Username must have 30 or less characters' })
-  @IsAlphanumeric(null, {
+  @IsAlphanumeric('es-ES', {
     message: 'Username only allows alpha numeric chars.',
   })
   username: string;
@@ -35,6 +33,6 @@ export class CreateUserDto {
   password: string;
 
   @IsNotEmpty()
-  @IsEmail(null, { message: 'Please provide valid Email.' })
+  @IsEmail({}, { message: 'Please provide valid Email.' })
   email: string;
 }
