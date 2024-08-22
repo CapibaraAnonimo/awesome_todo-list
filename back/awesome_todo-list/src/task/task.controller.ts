@@ -27,7 +27,12 @@ export class TaskController {
   @Get()
   async findAll() {
     const tasks: Task[] = await this.taskService.findAll();
-    //return tasks;
+    return tasks.map((task) => TaskResponse.of(task));
+  }
+
+  @Get('user/:id')
+  async findAllByUser(@Param('id') id: string) {
+    const tasks: Task[] = await this.taskService.findAllByUser(id);
     return tasks.map((task) => TaskResponse.of(task));
   }
 

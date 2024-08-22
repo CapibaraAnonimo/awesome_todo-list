@@ -29,6 +29,20 @@ export class TaskService {
     return this.taskRepository.find();
   }
 
+  findAllByUser(id: string): Promise<Task[]> {
+    return this.taskRepository
+      .createQueryBuilder('task')
+      .leftJoinAndSelect('task._user', 'user')
+      .where('user.id = :id', { id })
+      .getMany();
+    //return this.taskRepository.find({ where: { user: { id: id } } });
+    // return this.taskRepository.find({
+    //   where: {
+    //     user.id: id
+    //   },
+    // });
+  }
+
   findOne(id: string) {
     return this.taskRepository.findOneBy({ id });
   }
