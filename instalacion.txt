@@ -1,3 +1,5 @@
 Para la ejecución de la aplicación con postgreSQL hara falta la instalación del paquete para esta base de datos del ORM typeorm usando "npm install --save @nestjs/typeorm typeorm pg"
 
 Para la validación de datos descargamos las siguientes dependencias "npm i --save class-validator class-transformer"
+
+Estoy investigando el tema de lazy y eager en nestJS, ya que no funciona igual que en java.

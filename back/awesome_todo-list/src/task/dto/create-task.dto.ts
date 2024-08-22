@@ -6,7 +6,6 @@ import {
   IsEnum,
   Length,
 } from 'class-validator';
-import { TaskStatus } from '../entities/task.entity';
 
 export class CreateTaskDto {
   @IsString()
@@ -19,8 +18,8 @@ export class CreateTaskDto {
   @IsNotEmpty({ message: 'Description is mandatory' })
   description: string;
 
-  @IsEnum(TaskStatus, { message: 'Status must be part of TaskStatus' })
-  state: keyof typeof TaskStatus;
+  //@IsEnum(TaskStatus, { message: 'Status must be part of TaskStatus' })
+  //state: TaskStatus;
 
   @IsString()
   @Length(36, 36, { message: 'User ID must match UUID length' })

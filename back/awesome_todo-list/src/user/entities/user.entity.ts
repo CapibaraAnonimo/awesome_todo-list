@@ -42,7 +42,7 @@ export class User {
     this._email = value;
   }
 
-  @OneToMany(() => Task, (task) => task.user)
+  @OneToMany(() => Task, (task: Task) => task.user)
   private _tasks: Task[];
   public get tasks(): Task[] {
     return this._tasks;

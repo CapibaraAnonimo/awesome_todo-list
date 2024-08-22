@@ -1,11 +1,13 @@
 import { User } from 'src/user/entities/user.entity';
-import { Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { TaskStatus } from '../taskStatus';
 
 @Entity()
 export class Task {
   @PrimaryGeneratedColumn('uuid')
-  private id: string;
+  id: string;
 
+  @Column({ type: 'varchar', length: 60 })
   private _title: string;
   public get title(): string {
     return this._title;
@@ -14,6 +16,7 @@ export class Task {
     this._title = value;
   }
 
+  @Column({ type: 'varchar' })
   private _description: string;
   public get description(): string {
     return this._description;
@@ -22,15 +25,19 @@ export class Task {
     this._description = value;
   }
 
-  private _status: keyof typeof TaskStatus;
-  public get status(): keyof typeof TaskStatus {
+  @Column({ type: 'enum', enum: TaskStatus, default: TaskStatus.TO_DO })
+  private _status: TaskStatus;
+  public get status(): TaskStatus {
     return this._status;
   }
-  public set status(value: keyof typeof TaskStatus) {
+  public set status(value: TaskStatus) {
     this._status = value;
   }
 
-  @ManyToOne(() => User, (user) => user.tasks)
+
+  //There should be a way to make it work in deafault,
+  //but since is a ManyToOne is not problematic to use eager
+  @ManyToOne(() => User, (user: User) => user.tasks, { eager: true })
   private _user: User;
   public get user(): User {
     return this._user;
@@ -39,15 +46,10 @@ export class Task {
     this._user = value;
   }
 
-  constructor(id: string, title: string, description: string) {
-    this.id = id;
+  constructor(title: string, description: string, user: User) {
     this.title = title;
     this.description = description;
+    this.status = TaskStatus.TO_DO;
+    this.user = user;
   }
-}
-
-export enum TaskStatus {
-  TO_DO = 'TO-DO',
-  IN_PROGRESS = 'IN_PROGRESS',
-  DONE = 'DONE',
 }
