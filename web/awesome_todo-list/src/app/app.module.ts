@@ -8,9 +8,10 @@ import { DashboardComponent } from './components/pages/dashboard/dashboard.compo
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './modules/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NewTaskDialogComponent } from './components/dialogs/new-task-dialog/new-task-dialog.component';
 
 @NgModule({
-  declarations: [AppComponent, DashboardComponent],
+  declarations: [AppComponent, DashboardComponent, NewTaskDialogComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

@@ -1,7 +1,11 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpHeaders,
+} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { TaskResponse } from '../interfaces/task-response';
-import { Observable } from 'rxjs';
+import { catchError, Observable, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { UpdateTaskStatus } from '../interfaces/update-task-status';
 import { CreateTask } from '../interfaces/create-task';
@@ -30,15 +34,29 @@ export class TaskService {
     );
   }
 
-  PostTask(createTask: CreateTask): Observable<TaskResponse> {
+  postTask(createTask: CreateTask): Observable<TaskResponse> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
     });
 
-    return this.http.post<TaskResponse>(
-      `${environment.apiBaseUrl}/task`,
-      JSON.stringify(createTask),
-      { headers }
-    );
+    return this.http
+      .post<TaskResponse>(
+        `${environment.apiBaseUrl}/task`,
+        JSON.stringify(createTask),
+        { headers }
+      );
+  }
+
+  private handleError(error: HttpErrorResponse) {
+    // let errorMessage = 'Unknown error!';
+    // if (error.error instanceof ErrorEvent) {
+    //   // Client-side errors
+    //   errorMessage = `Error: ${error.error.message}`;
+    // } else {
+    //   // Server-side errors
+    //   errorMessage = `Server Error: ${error.status}\nMessage: ${error.error.message}`;
+    // }
+    // return throwError(errorMessage);
+    return throwError(error);
   }
 }

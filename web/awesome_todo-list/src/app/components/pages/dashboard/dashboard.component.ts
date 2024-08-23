@@ -10,6 +10,8 @@ import { UserResponse } from 'src/app/interfaces/user-response';
 import { UpdateTaskStatus } from 'src/app/interfaces/update-task-status';
 import { TaskService } from 'src/app/services/task.service';
 import { UserService } from 'src/app/services/user.service';
+import { MatDialog } from '@angular/material/dialog';
+import { NewTaskDialogComponent } from '../../dialogs/new-task-dialog/new-task-dialog.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -31,7 +33,8 @@ export class DashboardComponent {
 
   constructor(
     private userService: UserService,
-    private taskService: TaskService
+    private taskService: TaskService,
+    public dialog: MatDialog
   ) {
     this.userService.getAllUsers().subscribe((response) => {
       this.users = response;
@@ -68,10 +71,10 @@ export class DashboardComponent {
       } else if (this.done.includes(movedTask)) {
         newStatus = TaskStatus.DONE;
       }
-      let xStatus: UpdateTaskStatus = { status: newStatus! };
+      let updatedTaskStatus: UpdateTaskStatus = { status: newStatus! };
 
       this.taskService
-        .changeStatus(movedTask.id, xStatus)
+        .changeStatus(movedTask.id, updatedTaskStatus)
         .subscribe((response) => {
           if (response.status === TaskStatus.TO_DO) {
             this.replaceTask(this.todo, response);
@@ -118,7 +121,15 @@ export class DashboardComponent {
       });
   }
 
-  addTask() {
-    
+  openDialogNewTask() {
+    const dialogRef = this.dialog.open(NewTaskDialogComponent, {
+      data: this.current_user.id,
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.todo.push(result);
+      }
+    });
   }
 }

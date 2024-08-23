@@ -2,7 +2,11 @@
   <p>
     <mat-toolbar color="primary">
       <span>Awesome TO-DO List</span>
-      <button mat-raised-button (click)="addTask()">
+      <button
+        mat-raised-button
+        (click)="openDialogNewTask()"
+        style="margin-left: 50px"
+      >
         New Task
       </button>
       <span class="example-spacer"></span>
@@ -21,7 +25,7 @@
     </mat-toolbar>
   </p>
 
-  <div style="display: flex; justify-content: center;">
+  <div style="display: flex; justify-content: center">
     <div class="example-container">
       <h2>To do</h2>
 
