@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+  Put,
 } from '@nestjs/common';
 import { TaskService } from './task.service';
 import { CreateTaskDto } from './dto/create-task.dto';
@@ -48,6 +49,7 @@ export class TaskController {
 
   @Patch('status/:id')
   async updateStatus(@Param('id') id: string, @Body() status: UpdateTaskStatusDto) {
+    console.log(status);
     return TaskResponse.of(await this.taskService.updateStatus(id, status));
   }
 
