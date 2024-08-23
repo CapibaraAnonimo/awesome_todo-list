@@ -6,6 +6,7 @@ import {
   Matches,
   MaxLength,
   MinLength,
+  Validate,
 } from 'class-validator';
 
 const passwordRegEx =
@@ -24,6 +25,7 @@ export class CreateUserDto {
   @IsAlphanumeric('es-ES', {
     message: 'Username only allows alpha numeric chars.',
   })
+  @Validate(UniqueField)
   username: string;
 
   @IsNotEmpty({ message: 'Password is mandatory' })
