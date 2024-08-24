@@ -1,0 +1,113 @@
+<div class="container">
+  <p>
+    <mat-toolbar color="primary">
+      <span>Awesome TO-DO List</span>
+      <button
+        mat-raised-button
+        (click)="openDialogNewTask()"
+        style="margin-left: 50px"
+      >
+        New Task
+      </button>
+      <span class="example-spacer"></span>
+      <button mat-button [matMenuTriggerFor]="menu">
+        {{ current_user.username }}
+      </button>
+      <mat-menu #menu="matMenu">
+        <button
+          mat-menu-item
+          *ngFor="let user of users"
+          (click)="setUser(user)"
+        >
+          {{ user.username }}
+        </button>
+      </mat-menu>
+    </mat-toolbar>
+  </p>
+
+  <div style="display: flex; justify-content: center">
+    <div class="example-container">
+      <h2>To do</h2>
+
+      <div
+        cdkDropList
+        #todoList="cdkDropList"
+        [cdkDropListData]="todo"
+        [cdkDropListConnectedTo]="[doneList, inprogressList]"
+        class="example-list"
+        (cdkDropListDropped)="drop($event)"
+      >
+        <div
+          class="example-box"
+          *ngFor="let task of todo"
+          cdkDrag
+          [cdkDragData]="task"
+          (click)="openDialogEditTask(task)"
+        >
+          {{ task.id }}
+        </div>
+      </div>
+    </div>
+
+    <div class="example-container">
+      <h2>In Progress</h2>
+
+      <div
+        cdkDropList
+        #inprogressList="cdkDropList"
+        [cdkDropListData]="inprogress"
+        [cdkDropListConnectedTo]="[todoList, doneList]"
+        class="example-list"
+        (cdkDropListDropped)="drop($event)"
+      >
+        <div
+          class="example-box"
+          *ngFor="let task of inprogress"
+          cdkDrag
+          [cdkDragData]="task"
+          (click)="openDialogEditTask(task)"
+        >
+          {{ task.id }}
+        </div>
+      </div>
+    </div>
+
+    <div class="example-container">
+      <h2>Done</h2>
+
+      <div
+        cdkDropList
+        #doneList="cdkDropList"
+        [cdkDropListData]="done"
+        [cdkDropListConnectedTo]="[todoList, inprogressList]"
+        class="example-list"
+        (cdkDropListDropped)="drop($event)"
+      >
+        <div
+          class="example-box"
+          *ngFor="let task of done"
+          cdkDrag
+          [cdkDragData]="task"
+          (click)="openDialogEditTask(task)"
+        >
+          {{ task.id }}
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <p>todo</p>
+      <ul>
+        <li *ngFor="let task of todo">{{ task.status }}</li>
+      </ul>
+      <p>inprogress</p>
+      <ul>
+        <li *ngFor="let task of inprogress">{{ task.status }}</li>
+      </ul>
+      <p>done</p>
+      <ul>
+        <li *ngFor="let task of done">{{ task.status }}</li>
+      </ul>
+    </div>
+  </div>
+</div>

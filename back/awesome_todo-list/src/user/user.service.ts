@@ -12,14 +12,14 @@ export class UserService {
   ) {}
 
   create(createUserDto: CreateUserDto) {
-    let user: User = new User(
-      createUserDto.name,
-      createUserDto.username,
-      createUserDto.password,
-      createUserDto.email,
+    return this.userRepository.save(
+      new User(
+        createUserDto.name,
+        createUserDto.username,
+        createUserDto.password,
+        createUserDto.email,
+      ),
     );
-
-    return this.userRepository.save(user);
   }
 
   findAll(): Promise<User[]> {

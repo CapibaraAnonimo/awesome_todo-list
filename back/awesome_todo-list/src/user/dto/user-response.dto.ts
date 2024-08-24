@@ -9,7 +9,12 @@ export class UserResponse {
 
   private email: string;
 
-  constructor(id: string, name: string, username: string, email: string) {
+  constructor(
+    id: string,
+    name: string,
+    username: string,
+    email: string,
+  ) {
     this.id = id;
     this.name = name;
     this.username = username;
@@ -17,6 +22,11 @@ export class UserResponse {
   }
 
   public static of(user: User): UserResponse {
-    return new UserResponse(user.id, user.name, user.username, user.email);
+    return new UserResponse(
+      user.id,
+      user.name,
+      user.username,
+      user.email
+    );
   }
 }
