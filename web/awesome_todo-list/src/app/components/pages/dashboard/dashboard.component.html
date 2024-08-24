@@ -42,6 +42,7 @@
           *ngFor="let task of todo"
           cdkDrag
           [cdkDragData]="task"
+          (click)="openDialogEditTask(task)"
         >
           {{ task.id }}
         </div>
@@ -64,6 +65,7 @@
           *ngFor="let task of inprogress"
           cdkDrag
           [cdkDragData]="task"
+          (click)="openDialogEditTask(task)"
         >
           {{ task.id }}
         </div>
@@ -86,6 +88,7 @@
           *ngFor="let task of done"
           cdkDrag
           [cdkDragData]="task"
+          (click)="openDialogEditTask(task)"
         >
           {{ task.id }}
         </div>

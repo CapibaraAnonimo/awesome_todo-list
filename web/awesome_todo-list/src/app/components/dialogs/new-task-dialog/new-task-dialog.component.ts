@@ -28,12 +28,11 @@ export class NewTaskDialogComponent {
     };
     this.taskService.postTask(newTask).subscribe({
       next: (response) => {
-        console.log(response);
         this.dialogRef.close(response);
       },
       error: (error) => {
         this.taskError = true;
-        this.errorMessages = error.error.message
+        this.errorMessages = error.error.message;
       },
     });
   }

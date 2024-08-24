@@ -12,6 +12,7 @@ import { TaskService } from 'src/app/services/task.service';
 import { UserService } from 'src/app/services/user.service';
 import { MatDialog } from '@angular/material/dialog';
 import { NewTaskDialogComponent } from '../../dialogs/new-task-dialog/new-task-dialog.component';
+import { EditTaskDialogComponent } from '../../dialogs/edit-task-dialog/edit-task-dialog.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -39,12 +40,6 @@ export class DashboardComponent {
     this.userService.getAllUsers().subscribe((response) => {
       this.users = response;
       this.setUser(this.users[0]);
-      // this.current_user = this.users[0];
-      // this.taskService
-      //   .getTasksByUser(this.current_user.id)
-      //   .subscribe((response) => {
-      //     this.todo.push(...response);
-      //   });
     });
   }
 
@@ -85,7 +80,6 @@ export class DashboardComponent {
           if (response.status === TaskStatus.DONE) {
             this.replaceTask(this.done, response);
           }
-          let newTask = response;
         });
     }
   }
@@ -131,5 +125,38 @@ export class DashboardComponent {
         this.todo.push(result);
       }
     });
+  }
+
+  openDialogEditTask(task: TaskResponse) {
+    const dialogRef = this.dialog.open(EditTaskDialogComponent, {
+      data: task,
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        if (result.status === TaskStatus.TO_DO) {
+          this.replaceTask(this.todo, result);
+        }
+        if (result.status === TaskStatus.IN_PROGRESS) {
+          this.replaceTask(this.inprogress, result);
+        }
+        if (result.status === TaskStatus.DONE) {
+          this.replaceTask(this.done, result);
+        }
+        if (result === -1) {
+          this.removeItemOnce(this.todo, task);
+          this.removeItemOnce(this.inprogress, task);
+          this.removeItemOnce(this.done, task);
+        }
+      }
+    });
+  }
+
+  removeItemOnce<T>(array: T[], item:T) {
+    var index = array.indexOf(item);
+    if (index > -1) {
+      array.splice(index, 1);
+    }
+    return item;
   }
 }

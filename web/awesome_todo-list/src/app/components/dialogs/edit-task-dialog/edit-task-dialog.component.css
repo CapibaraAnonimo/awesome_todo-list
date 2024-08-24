@@ -1,0 +1,9 @@
+.dialog-warn {
+    background-color: #ffcccb;
+    color: #b71c1c;
+    border: 3px, solid, #b71c1c;
+  }
+  
+  .text-warn {
+    color: #b71c1c;
+  }

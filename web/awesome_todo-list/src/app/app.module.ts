@@ -9,9 +9,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './modules/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NewTaskDialogComponent } from './components/dialogs/new-task-dialog/new-task-dialog.component';
+import { EditTaskDialogComponent } from './components/dialogs/edit-task-dialog/edit-task-dialog.component';
 
 @NgModule({
-  declarations: [AppComponent, DashboardComponent, NewTaskDialogComponent],
+  declarations: [AppComponent, DashboardComponent, NewTaskDialogComponent, EditTaskDialogComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
