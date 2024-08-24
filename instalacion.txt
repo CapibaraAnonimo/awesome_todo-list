@@ -2,4 +2,6 @@ Para la ejecución de la aplicación con postgreSQL hara falta la instalación d
 
 Para la validación de datos descargamos las siguientes dependencias "npm i --save class-validator class-transformer"
 
+Para la documentación usaremos instalaremos compodoc "npm install -g @compodoc/compodoc"
+
 Estoy investigando el tema de lazy y eager en nestJS, ya que no funciona igual que en java.
