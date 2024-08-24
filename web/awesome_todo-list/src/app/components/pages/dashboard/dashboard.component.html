@@ -1,7 +1,10 @@
 <div class="container">
-  <app-dashboard-toolbar (changeUserEvent)="getUserTasks($event)" (newTaskEvent)="addNewTask($event)"></app-dashboard-toolbar>
+  <app-dashboard-toolbar
+    (changeUserEvent)="getUserTasks($event)"
+    (newTaskEvent)="addNewTask($event)"
+  ></app-dashboard-toolbar>
 
-  <div style="display: flex; justify-content: center">
+  <div style="display: flex; justify-content: center; flex-wrap: wrap; margin-top: 20px;">
     <div class="example-container">
       <h2>To do</h2>
 
@@ -20,7 +23,7 @@
           [cdkDragData]="task"
           (click)="openDialogEditTask(task)"
         >
-          {{ task.id }}
+          <app-task-content [task]="task"></app-task-content>
         </div>
       </div>
     </div>
@@ -43,7 +46,7 @@
           [cdkDragData]="task"
           (click)="openDialogEditTask(task)"
         >
-          {{ task.id }}
+          <app-task-content [task]="task"></app-task-content>
         </div>
       </div>
     </div>
@@ -66,12 +69,12 @@
           [cdkDragData]="task"
           (click)="openDialogEditTask(task)"
         >
-          {{ task.id }}
+          <app-task-content [task]="task"></app-task-content>
         </div>
       </div>
     </div>
 
-    <div>
+    <!-- <div>
       <p>todo</p>
       <ul>
         <li *ngFor="let task of todo">{{ task.status }}</li>
@@ -84,6 +87,6 @@
       <ul>
         <li *ngFor="let task of done">{{ task.status }}</li>
       </ul>
-    </div>
+    </div> -->
   </div>
 </div>

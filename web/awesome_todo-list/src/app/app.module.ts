@@ -11,9 +11,17 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NewTaskDialogComponent } from './components/dialogs/new-task-dialog/new-task-dialog.component';
 import { EditTaskDialogComponent } from './components/dialogs/edit-task-dialog/edit-task-dialog.component';
 import { DashboardToolbarComponent } from './components/toolbars/dashboard-toolbar/dashboard-toolbar.component';
+import { TaskContentComponent } from './components/task-content/task-content.component';
 
 @NgModule({
-  declarations: [AppComponent, DashboardComponent, NewTaskDialogComponent, EditTaskDialogComponent, DashboardToolbarComponent],
+  declarations: [
+    AppComponent,
+    DashboardComponent,
+    NewTaskDialogComponent,
+    EditTaskDialogComponent,
+    DashboardToolbarComponent,
+    TaskContentComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -21,7 +29,7 @@ import { DashboardToolbarComponent } from './components/toolbars/dashboard-toolb
     BrowserAnimationsModule,
     MaterialModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,0 +1,11 @@
+.scrollable-text {
+  max-height: 70px;
+  overflow-y: auto;
+  margin: 0;
+  padding: 0;
+}
+
+:host {
+  display: block;
+  width: 100%;
+}
