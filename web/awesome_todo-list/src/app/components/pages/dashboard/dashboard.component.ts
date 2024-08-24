@@ -9,9 +9,7 @@ import { TaskStatus } from 'src/app/interfaces/task-status';
 import { UserResponse } from 'src/app/interfaces/user-response';
 import { UpdateTaskStatus } from 'src/app/interfaces/update-task-status';
 import { TaskService } from 'src/app/services/task.service';
-import { UserService } from 'src/app/services/user.service';
 import { MatDialog } from '@angular/material/dialog';
-import { NewTaskDialogComponent } from '../../dialogs/new-task-dialog/new-task-dialog.component';
 import { EditTaskDialogComponent } from '../../dialogs/edit-task-dialog/edit-task-dialog.component';
 
 @Component({
@@ -32,16 +30,7 @@ export class DashboardComponent {
 
   current_user!: UserResponse;
 
-  constructor(
-    private userService: UserService,
-    private taskService: TaskService,
-    public dialog: MatDialog
-  ) {
-    this.userService.getAllUsers().subscribe((response) => {
-      this.users = response;
-      this.setUser(this.users[0]);
-    });
-  }
+  constructor(private taskService: TaskService, public dialog: MatDialog) {}
 
   drop(event: CdkDragDrop<TaskResponse[]>) {
     const movedTask = event.item.data;
@@ -93,7 +82,7 @@ export class DashboardComponent {
     }
   }
 
-  setUser(user: UserResponse) {
+  getUserTasks(user: UserResponse) {
     this.current_user = user;
     this.todo = [];
     this.inprogress = [];
@@ -115,16 +104,8 @@ export class DashboardComponent {
       });
   }
 
-  openDialogNewTask() {
-    const dialogRef = this.dialog.open(NewTaskDialogComponent, {
-      data: this.current_user.id,
-    });
-
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        this.todo.push(result);
-      }
-    });
+  addNewTask(newTask: TaskResponse) {
+    this.todo.push(newTask);
   }
 
   openDialogEditTask(task: TaskResponse) {
@@ -152,7 +133,7 @@ export class DashboardComponent {
     });
   }
 
-  removeItemOnce<T>(array: T[], item:T) {
+  removeItemOnce<T>(array: T[], item: T) {
     var index = array.indexOf(item);
     if (index > -1) {
       array.splice(index, 1);
