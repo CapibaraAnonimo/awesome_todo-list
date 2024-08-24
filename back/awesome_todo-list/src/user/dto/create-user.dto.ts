@@ -8,6 +8,7 @@ import {
   MinLength,
   Validate,
 } from 'class-validator';
+import { IsUnique } from 'src/validation/unique/is-unique-decorator';
 
 const passwordRegEx =
   /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\W)(?!.* ).{8,16}$/;
@@ -25,7 +26,7 @@ export class CreateUserDto {
   @IsAlphanumeric('es-ES', {
     message: 'Username only allows alpha numeric chars.',
   })
-  @Validate(UniqueField)
+  @IsUnique({ tableName: 'user', column: '_username' })
   username: string;
 
   @IsNotEmpty({ message: 'Password is mandatory' })
