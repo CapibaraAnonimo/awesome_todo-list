@@ -6,6 +6,7 @@ import { UserModule } from './user/user.module';
 import { User } from './user/entities/user.entity';
 import { TaskModule } from './task/task.module';
 import { Task } from './task/entities/task.entity';
+import { IsUniqueConstraint } from './validation/unique/is-unique-constraint';
 
 @Module({
   imports: [
@@ -24,6 +25,6 @@ import { Task } from './task/entities/task.entity';
     TaskModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, IsUniqueConstraint],
 })
 export class AppModule {}
