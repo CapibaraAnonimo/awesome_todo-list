@@ -1,7 +1,9 @@
-<div style="display: flex; flex-direction: column;">
+<div style="display: flex; flex-direction: column">
   <div style="display: flex; justify-content: space-between">
     <h1>{{ task.title }}</h1>
-    <div style="display: flex; align-items: center">30/12/2024</div>
+    <div style="display: flex; align-items: center">
+      {{ task.creationDate }}
+    </div>
   </div>
   <p class="scrollable-text">
     {{ task.description }}

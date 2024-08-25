@@ -141,6 +141,12 @@
                         <td class="col-md-4">
                             <ul class="index-list">
                                 <li>
+                                        <a href="#creationDate" 
+>
+                                            creationDate
+                                        </a>
+                                </li>
+                                <li>
                                         <a href="#description" 
 >
                                             description
@@ -181,6 +187,39 @@
 
             <section data-compodoc="block-properties">
                 <h3 id="inputs">Properties</h3>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="creationDate"></a>
+                                        <span class="name "><b>creationDate</b>
+                                            <a href="#creationDate">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>creationDate:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                        </tbody>
+                    </table>
                     <table class="table table-sm table-bordered">
                         <tbody>
                                 <tr>
@@ -358,6 +397,7 @@ export interface TaskResponse {
   title: string;
   description: string;
   status: TaskStatus;
+  creationDate: string;
   user_id: string;
 }
 </code></pre>

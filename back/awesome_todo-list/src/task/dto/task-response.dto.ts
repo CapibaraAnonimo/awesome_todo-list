@@ -1,5 +1,7 @@
+import { Expose, plainToInstance, Transform } from 'class-transformer';
 import { Task } from '../entities/task.entity';
 import { TaskStatus } from '../taskStatus';
+import { format } from 'date-fns';
 
 /**
  * DTO for Task Response.
@@ -26,6 +28,11 @@ export class TaskResponseDto {
   private status: TaskStatus;
 
   /**
+   * The date when the task was created.
+   */
+  private creationDate: string;
+
+  /**
    * Unique identifier of the user associated with the task.
    */
   private user_id: string;
@@ -45,12 +52,21 @@ export class TaskResponseDto {
     description: string,
     status: TaskStatus,
     user_id: string,
+    creationDate: Date,
   ) {
     this.id = id;
     this.title = title;
     this.description = description;
     this.status = status;
     this.user_id = user_id;
+    this.creationDate = creationDate.toLocaleDateString('es-Es', {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+    });
   }
 
   /**
@@ -66,6 +82,7 @@ export class TaskResponseDto {
       task.description,
       task.status,
       task.user.id,
+      task.creationDate,
     );
   }
 }

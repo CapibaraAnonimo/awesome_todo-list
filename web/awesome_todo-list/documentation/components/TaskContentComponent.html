@@ -251,10 +251,12 @@ export class TaskContentComponent {
     </div>
 
     <div class="tab-pane fade " id="templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;div style&#x3D;&quot;display: flex; flex-direction: column;&quot;&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;div style&#x3D;&quot;display: flex; flex-direction: column&quot;&gt;
   &lt;div style&#x3D;&quot;display: flex; justify-content: space-between&quot;&gt;
     &lt;h1&gt;{{ task.title }}&lt;/h1&gt;
-    &lt;div style&#x3D;&quot;display: flex; align-items: center&quot;&gt;30/12/2024&lt;/div&gt;
+    &lt;div style&#x3D;&quot;display: flex; align-items: center&quot;&gt;
+      {{ task.creationDate }}
+    &lt;/div&gt;
   &lt;/div&gt;
   &lt;p class&#x3D;&quot;scrollable-text&quot;&gt;
     {{ task.description }}
@@ -306,7 +308,7 @@ export class TaskContentComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div style="display: flex; flex-direction: column;">  <div style="display: flex; justify-content: space-between">    <h1>{{ task.title }}</h1>    <div style="display: flex; align-items: center">30/12/2024</div>  </div>  <p class="scrollable-text">    {{ task.description }}  </p></div></div>'
+        var COMPONENT_TEMPLATE = '<div><div style="display: flex; flex-direction: column">  <div style="display: flex; justify-content: space-between">    <h1>{{ task.title }}</h1>    <div style="display: flex; align-items: center">      {{ task.creationDate }}    </div>  </div>  <p class="scrollable-text">    {{ task.description }}  </p></div></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DashboardToolbarComponent', 'selector': 'app-dashboard-toolbar'},{'name': 'EditTaskDialogComponent', 'selector': 'app-edit-task-dialog'},{'name': 'NewTaskDialogComponent', 'selector': 'app-new-task-dialog'},{'name': 'TaskContentComponent', 'selector': 'app-task-content'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'TaskContentComponent'};

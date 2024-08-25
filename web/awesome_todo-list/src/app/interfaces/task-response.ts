@@ -5,5 +5,6 @@ export interface TaskResponse {
   title: string;
   description: string;
   status: TaskStatus;
+  creationDate: string;
   user_id: string;
 }
