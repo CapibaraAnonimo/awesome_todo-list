@@ -49,6 +49,18 @@ export class Task {
     this._status = value;
   }
 
+  /**
+   * The date when the task was created.
+   */
+  @Column({ type: 'timestamp' })
+  private _creationDate: Date;
+  public get creationDate(): Date {
+    return this._creationDate;
+  }
+  public set creationDate(value: Date) {
+    this._creationDate = value;
+  }
+
   //There should be a way to make it work in deafault,
   //but since is a ManyToOne is not problematic to use eager
   /**
@@ -75,5 +87,6 @@ export class Task {
     this.description = description;
     this.status = TaskStatus.TO_DO;
     this.user = user;
+    this.creationDate = new Date();
   }
 }

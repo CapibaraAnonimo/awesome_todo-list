@@ -1,31 +1,10 @@
 <div class="container">
-  <p>
-    <mat-toolbar color="primary">
-      <span>Awesome TO-DO List</span>
-      <button
-        mat-raised-button
-        (click)="openDialogNewTask()"
-        style="margin-left: 50px"
-      >
-        New Task
-      </button>
-      <span class="example-spacer"></span>
-      <button mat-button [matMenuTriggerFor]="menu">
-        {{ current_user.username }}
-      </button>
-      <mat-menu #menu="matMenu">
-        <button
-          mat-menu-item
-          *ngFor="let user of users"
-          (click)="setUser(user)"
-        >
-          {{ user.username }}
-        </button>
-      </mat-menu>
-    </mat-toolbar>
-  </p>
+  <app-dashboard-toolbar
+    (changeUserEvent)="getUserTasks($event)"
+    (newTaskEvent)="addNewTask($event)"
+  ></app-dashboard-toolbar>
 
-  <div style="display: flex; justify-content: center">
+  <div style="display: flex; justify-content: center; flex-wrap: wrap; margin-top: 20px;">
     <div class="example-container">
       <h2>To do</h2>
 
@@ -44,7 +23,7 @@
           [cdkDragData]="task"
           (click)="openDialogEditTask(task)"
         >
-          {{ task.id }}
+          <app-task-content [task]="task"></app-task-content>
         </div>
       </div>
     </div>
@@ -67,7 +46,7 @@
           [cdkDragData]="task"
           (click)="openDialogEditTask(task)"
         >
-          {{ task.id }}
+          <app-task-content [task]="task"></app-task-content>
         </div>
       </div>
     </div>
@@ -90,12 +69,12 @@
           [cdkDragData]="task"
           (click)="openDialogEditTask(task)"
         >
-          {{ task.id }}
+          <app-task-content [task]="task"></app-task-content>
         </div>
       </div>
     </div>
 
-    <div>
+    <!-- <div>
       <p>todo</p>
       <ul>
         <li *ngFor="let task of todo">{{ task.status }}</li>
@@ -108,6 +87,6 @@
       <ul>
         <li *ngFor="let task of done">{{ task.status }}</li>
       </ul>
-    </div>
+    </div> -->
   </div>
 </div>

@@ -1,0 +1,19 @@
+<mat-toolbar color="primary">
+  <span>Awesome TO-DO List</span>
+  <button
+    mat-raised-button
+    (click)="openDialogNewTask()"
+    style="margin-left: 50px"
+  >
+    New Task
+  </button>
+  <span class="example-spacer"></span>
+  <button mat-button [matMenuTriggerFor]="menu">
+    {{ current_user.username }}
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item *ngFor="let user of users" (click)="setUser(user)">
+      {{ user.username }}
+    </button>
+  </mat-menu>
+</mat-toolbar>
