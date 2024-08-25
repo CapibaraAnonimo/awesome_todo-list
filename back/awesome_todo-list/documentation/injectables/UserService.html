@@ -158,6 +158,10 @@ including creating, finding, updating, and deleting user records.</p>
                             </li>
                             <li>
                                     <span class="modifier">Async</span>
+                                <a href="#signIn" >signIn</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
                                 <a href="#update" >update</a>
                             </li>
                         </ul>
@@ -178,12 +182,12 @@ including creating, finding, updating, and deleting user records.</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(userRepository: <a href="../entitys/User.html" target="_self">Repository&lt;User&gt;</a>)</code>
+<code>constructor(userRepository: <a href="../entitys/User.html" target="_self">Repository&lt;User&gt;</a>, jwtService: JwtService)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/user/user.service.ts:13</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/user/user.service.ts:19</a></div>
                             </td>
                         </tr>
 
@@ -205,6 +209,18 @@ including creating, finding, updating, and deleting user records.</p>
                                                   
                                                         <td>
                                                                         <code><a href="../entitys/User.html" target="_self" >Repository&lt;User&gt;</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                                <tr>
+                                                        <td>jwtService</td>
+                                                  
+                                                        <td>
+                                                                    <code>JwtService</code>
                                                         </td>
                                                   
                                                     <td>
@@ -246,8 +262,8 @@ including creating, finding, updating, and deleting user records.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="24"
-                                    class="link-to-prism">src/user/user.service.ts:24</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="31"
+                                    class="link-to-prism">src/user/user.service.ts:31</a></div>
                         </td>
                     </tr>
 
@@ -323,8 +339,8 @@ including creating, finding, updating, and deleting user records.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="40"
-                                    class="link-to-prism">src/user/user.service.ts:40</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="47"
+                                    class="link-to-prism">src/user/user.service.ts:47</a></div>
                         </td>
                     </tr>
 
@@ -368,8 +384,8 @@ including creating, finding, updating, and deleting user records.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="51"
-                                    class="link-to-prism">src/user/user.service.ts:51</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="58"
+                                    class="link-to-prism">src/user/user.service.ts:58</a></div>
                         </td>
                     </tr>
 
@@ -445,8 +461,8 @@ including creating, finding, updating, and deleting user records.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="90"
-                                    class="link-to-prism">src/user/user.service.ts:90</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="103"
+                                    class="link-to-prism">src/user/user.service.ts:103</a></div>
                         </td>
                     </tr>
 
@@ -506,6 +522,75 @@ including creating, finding, updating, and deleting user records.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="signIn"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>signIn</b></span>
+                        <a href="#signIn"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>signIn(singInDto: <a href="../classes/SignInDto.html" target="_self">SignInDto</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="112"
+                                    class="link-to-prism">src/user/user.service.ts:112</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>singInDto</td>
+                                            <td>
+                                                            <code><a href="../classes/SignInDto.html" target="_self" >SignInDto</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;literal type&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="update"></a>
                     <span class="name">
                             <span class="modifier">Async</span>
@@ -524,8 +609,8 @@ including creating, finding, updating, and deleting user records.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="68"
-                                    class="link-to-prism">src/user/user.service.ts:68</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="78"
+                                    class="link-to-prism">src/user/user.service.ts:78</a></div>
                         </td>
                     </tr>
 
@@ -605,12 +690,18 @@ including creating, finding, updating, and deleting user records.</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, NotFoundException } from &#x27;@nestjs/common&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+  Injectable,
+  NotFoundException,
+  UnauthorizedException,
+} from &#x27;@nestjs/common&#x27;;
 import { CreateUserDto } from &#x27;./dto/create-user.dto&#x27;;
 import { UpdateUserDto } from &#x27;./dto/update-user.dto&#x27;;
 import { InjectRepository } from &#x27;@nestjs/typeorm&#x27;;
 import { User } from &#x27;./entities/user.entity&#x27;;
 import { Repository } from &#x27;typeorm&#x27;;
+import { SignInDto } from &#x27;./dto/signin-dto&#x27;;
+import { JwtService } from &#x27;@nestjs/jwt&#x27;;
 
 /**
  * The UserService handles all operations related to users,
@@ -620,6 +711,7 @@ import { Repository } from &#x27;typeorm&#x27;;
 export class UserService {
   constructor(
     @InjectRepository(User) private readonly userRepository: Repository&lt;User&gt;,
+    private jwtService: JwtService,
   ) {}
 
   /**
@@ -656,7 +748,10 @@ export class UserService {
    * @throws {NotFoundException} NotFoundException if no user is found with the given ID.
    */
   async findOne(id: string): Promise&lt;User&gt; {
-    let user &#x3D; await this.userRepository.findOneBy({ id });
+    let user &#x3D; await this.userRepository
+      .createQueryBuilder(&#x27;user&#x27;)
+      .where(&#x27;user.id &#x3D; :id&#x27;, { id: id })
+      .getOne();
     if (user !&#x3D;&#x3D; null) {
       return user;
     } else {
@@ -673,7 +768,10 @@ export class UserService {
    * @throws {NotFoundException} NotFoundException if no user is found with the given ID.
    */
   async update(id: string, updateUserDto: UpdateUserDto): Promise&lt;User&gt; {
-    let user &#x3D; await this.userRepository.findOneBy({ id });
+    let user &#x3D; await this.userRepository
+      .createQueryBuilder(&#x27;user&#x27;)
+      .where(&#x27;user.id &#x3D; :id&#x27;, { id: id })
+      .getOne();
 
     if (user !&#x3D;&#x3D; null) {
       for (const [key, value] of Object.entries(updateUserDto)) {
@@ -695,7 +793,26 @@ export class UserService {
    * @returns A promise that resolves to the result of the delete operation.
    */
   remove(id: string) {
+    // return this.userRepository
+    //   .createQueryBuilder(&#x27;user&#x27;)
+    //   .delete()
+    //   .where(&#x27;user.id &#x3D; :id&#x27;, { id: id })
+    //   .execute();
     return this.userRepository.delete(id);
+  }
+
+  async signIn(singInDto: SignInDto): Promise&lt;{ access_token: string }&gt; {
+    const user &#x3D; await this.userRepository
+      .createQueryBuilder(&#x27;user&#x27;)
+      .where(&#x27;user.username &#x3D; :username&#x27;, { username: singInDto.username })
+      .getOne();
+    if (user?.password !&#x3D;&#x3D; singInDto.password) {
+      throw new UnauthorizedException();
+    }
+    const payload &#x3D; { sub: user.id, username: user.username };
+    return {
+      access_token: await this.jwtService.signAsync(payload),
+    };
   }
 }
 </code></pre>

@@ -1,9 +1,15 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './entities/user.entity';
 import { Repository } from 'typeorm';
+import { SignInDto } from './dto/signin-dto';
+import { JwtService } from '@nestjs/jwt';
 
 /**
  * The UserService handles all operations related to users,
@@ -13,6 +19,7 @@ import { Repository } from 'typeorm';
 export class UserService {
   constructor(
     @InjectRepository(User) private readonly userRepository: Repository<User>,
+    private jwtService: JwtService,
   ) {}
 
   /**
@@ -49,7 +56,10 @@ export class UserService {
    * @throws {NotFoundException} NotFoundException if no user is found with the given ID.
    */
   async findOne(id: string): Promise<User> {
-    let user = await this.userRepository.findOneBy({ id });
+    let user = await this.userRepository
+      .createQueryBuilder('user')
+      .where('user.id = :id', { id: id })
+      .getOne();
     if (user !== null) {
       return user;
     } else {
@@ -66,7 +76,10 @@ export class UserService {
    * @throws {NotFoundException} NotFoundException if no user is found with the given ID.
    */
   async update(id: string, updateUserDto: UpdateUserDto): Promise<User> {
-    let user = await this.userRepository.findOneBy({ id });
+    let user = await this.userRepository
+      .createQueryBuilder('user')
+      .where('user.id = :id', { id: id })
+      .getOne();
 
     if (user !== null) {
       for (const [key, value] of Object.entries(updateUserDto)) {
@@ -88,6 +101,25 @@ export class UserService {
    * @returns A promise that resolves to the result of the delete operation.
    */
   remove(id: string) {
+    // return this.userRepository
+    //   .createQueryBuilder('user')
+    //   .delete()
+    //   .where('user.id = :id', { id: id })
+    //   .execute();
     return this.userRepository.delete(id);
+  }
+
+  async signIn(singInDto: SignInDto): Promise<{ access_token: string }> {
+    const user = await this.userRepository
+      .createQueryBuilder('user')
+      .where('user.username = :username', { username: singInDto.username })
+      .getOne();
+    if (user?.password !== singInDto.password) {
+      throw new UnauthorizedException();
+    }
+    const payload = { sub: user.id, username: user.username };
+    return {
+      access_token: await this.jwtService.signAsync(payload),
+    };
   }
 }

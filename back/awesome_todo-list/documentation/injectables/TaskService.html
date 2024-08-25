@@ -191,7 +191,7 @@ It interacts with the Task repository for data operations.</p>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/task/task.service.ts:16</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/task/task.service.ts:15</a></div>
                             </td>
                         </tr>
 
@@ -268,8 +268,8 @@ It interacts with the Task repository for data operations.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="28"
-                                    class="link-to-prism">src/task/task.service.ts:28</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="27"
+                                    class="link-to-prism">src/task/task.service.ts:27</a></div>
                         </td>
                     </tr>
 
@@ -345,8 +345,8 @@ It interacts with the Task repository for data operations.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="43"
-                                    class="link-to-prism">src/task/task.service.ts:43</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="45"
+                                    class="link-to-prism">src/task/task.service.ts:45</a></div>
                         </td>
                     </tr>
 
@@ -388,8 +388,8 @@ It interacts with the Task repository for data operations.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="53"
-                                    class="link-to-prism">src/task/task.service.ts:53</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="58"
+                                    class="link-to-prism">src/task/task.service.ts:58</a></div>
                         </td>
                     </tr>
 
@@ -467,8 +467,8 @@ It interacts with the Task repository for data operations.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="74"
-                                    class="link-to-prism">src/task/task.service.ts:74</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="79"
+                                    class="link-to-prism">src/task/task.service.ts:79</a></div>
                         </td>
                     </tr>
 
@@ -544,8 +544,8 @@ It interacts with the Task repository for data operations.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="134"
-                                    class="link-to-prism">src/task/task.service.ts:134</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="151"
+                                    class="link-to-prism">src/task/task.service.ts:151</a></div>
                         </td>
                     </tr>
 
@@ -623,8 +623,8 @@ It interacts with the Task repository for data operations.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="92"
-                                    class="link-to-prism">src/task/task.service.ts:92</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="101"
+                                    class="link-to-prism">src/task/task.service.ts:101</a></div>
                         </td>
                     </tr>
 
@@ -720,8 +720,8 @@ It interacts with the Task repository for data operations.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="116"
-                                    class="link-to-prism">src/task/task.service.ts:116</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="129"
+                                    class="link-to-prism">src/task/task.service.ts:129</a></div>
                         </td>
                     </tr>
 
@@ -808,7 +808,6 @@ import { InjectRepository } from &#x27;@nestjs/typeorm&#x27;;
 import { Repository } from &#x27;typeorm&#x27;;
 import { Task } from &#x27;./entities/task.entity&#x27;;
 import { User } from &#x27;src/user/entities/user.entity&#x27;;
-import { TaskStatus } from &#x27;./taskStatus&#x27;;
 import { UpdateTaskStatusDto } from &#x27;./dto/update-task-status.dto&#x27;;
 
 /**
@@ -833,7 +832,10 @@ export class TaskService {
       new Task(
         createTaskDto.title,
         createTaskDto.description,
-        await this.userRepository.findOneBy({ id: createTaskDto.user_id }),
+        await this.userRepository
+          .createQueryBuilder(&#x27;user&#x27;)
+          .where(&#x27;user.id &#x3D; :id&#x27;, { id: createTaskDto.user_id })
+          .getOne(),
       ),
     );
   }
@@ -844,7 +846,10 @@ export class TaskService {
    * @returns {Promise&lt;Task[]&gt;}  A promise that resolves to an array of tasks.
    */
   findAll(): Promise&lt;Task[]&gt; {
-    return this.taskRepository.find();
+    return this.taskRepository
+      .createQueryBuilder(&#x27;task&#x27;)
+      .leftJoinAndSelect(&#x27;task._user&#x27;, &#x27;user&#x27;)
+      .getMany();
   }
 
   /**
@@ -875,7 +880,11 @@ export class TaskService {
    * @throws {NotFoundException} NotFoundException if no task is found with the given ID.
    */
   async findOne(id: string) {
-    let task &#x3D; await this.taskRepository.findOneBy({ id });
+    let task &#x3D; await this.taskRepository
+      .createQueryBuilder(&#x27;task&#x27;)
+      .leftJoinAndSelect(&#x27;task._user&#x27;, &#x27;user&#x27;)
+      .where(&#x27;task.id &#x3D; :id&#x27;, { id: id })
+      .getOne();
     console.log(task);
     if (task !&#x3D;&#x3D; null) {
       return task;
@@ -893,7 +902,11 @@ export class TaskService {
    * @throws {NotFoundException} NotFoundException if no task is found with the given ID.
    */
   async update(id: string, updateTaskDto: UpdateTaskDto) {
-    let task &#x3D; await this.taskRepository.findOneBy({ id });
+    let task &#x3D; await this.taskRepository
+      .createQueryBuilder(&#x27;task&#x27;)
+      .leftJoinAndSelect(&#x27;task._user&#x27;, &#x27;user&#x27;)
+      .where(&#x27;task.id &#x3D; :id&#x27;, { id: id })
+      .getOne();
 
     if (task !&#x3D;&#x3D; null) {
       for (const [key, value] of Object.entries(updateTaskDto)) {
@@ -917,7 +930,11 @@ export class TaskService {
    * @throws {NotFoundException} NotFoundException if no task is found with the given ID.
    */
   async updateStatus(id: string, status: UpdateTaskStatusDto) {
-    let task &#x3D; await this.taskRepository.findOneBy({ id });
+    let task &#x3D; await this.taskRepository
+      .createQueryBuilder(&#x27;task&#x27;)
+      .leftJoinAndSelect(&#x27;task._user&#x27;, &#x27;user&#x27;)
+      .where(&#x27;task.id &#x3D; :id&#x27;, { id: id })
+      .getOne();
 
     if (task !&#x3D;&#x3D; null) {
       task.status &#x3D; status.status;

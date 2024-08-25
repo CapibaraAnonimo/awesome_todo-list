@@ -216,11 +216,28 @@ import { UserService } from &#x27;./user.service&#x27;;
 import { UserController } from &#x27;./user.controller&#x27;;
 import { TypeOrmModule } from &#x27;@nestjs/typeorm&#x27;;
 import { User } from &#x27;./entities/user.entity&#x27;;
+import { JwtModule } from &#x27;@nestjs/jwt&#x27;;
+import { jwtConstants } from &#x27;./cosntants&#x27;;
+import { AuthGuard } from &#x27;./auth.guard&#x27;;
+import { APP_GUARD } from &#x27;@nestjs/core&#x27;;
 
 @Module({
-  imports: [TypeOrmModule.forFeature([User])],
+  imports: [
+    TypeOrmModule.forFeature([User]),
+    JwtModule.register({
+      global: true,
+      secret: jwtConstants.secret,
+      signOptions: { expiresIn: &#x27;60s&#x27; },
+    }),
+  ],
   controllers: [UserController],
-  providers: [UserService],
+  providers: [
+    UserService,
+    {
+      provide: APP_GUARD,
+      useClass: AuthGuard,
+    },
+  ],
 })
 export class UserModule {}
 </code></pre>

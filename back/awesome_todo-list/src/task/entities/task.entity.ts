@@ -10,13 +10,19 @@ export class Task {
   /**
    * Unique identifier for each task, generated as a UUID.
    */
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
+  @PrimaryGeneratedColumn('uuid', { name: 'id' })
+  private _id: string;
+  public get id(): string {
+    return this._id;
+  }
+  public set id(value: string) {
+    this._id = value;
+  }
 
   /**
    * The title of the task.
    */
-  @Column({ type: 'varchar', length: 60 })
+  @Column({ type: 'varchar', length: 60, name: 'title' })
   private _title: string;
   public get title(): string {
     return this._title;
@@ -28,7 +34,7 @@ export class Task {
   /**
    * The description of the task.
    */
-  @Column({ type: 'varchar' })
+  @Column({ type: 'varchar', name: 'description' })
   private _description: string;
   public get description(): string {
     return this._description;
@@ -40,7 +46,12 @@ export class Task {
   /**
    * The status of the task.
    */
-  @Column({ type: 'enum', enum: TaskStatus, default: TaskStatus.TO_DO })
+  @Column({
+    type: 'enum',
+    enum: TaskStatus,
+    default: TaskStatus.TO_DO,
+    name: 'status',
+  })
   private _status: TaskStatus;
   public get status(): TaskStatus {
     return this._status;
@@ -52,7 +63,7 @@ export class Task {
   /**
    * The date when the task was created.
    */
-  @Column({ type: 'timestamp' })
+  @Column({ type: 'timestamp', name: 'creationDate' })
   private _creationDate: Date;
   public get creationDate(): Date {
     return this._creationDate;
@@ -61,12 +72,11 @@ export class Task {
     this._creationDate = value;
   }
 
-  //There should be a way to make it work in deafault,
-  //but since is a ManyToOne is not problematic to use eager
+
   /**
    * The user who is associated with the task.
    */
-  @ManyToOne(() => User, (user: User) => user.tasks, { eager: true })
+  @ManyToOne(() => User, (user: User) => user.tasks)
   private _user: User;
   public get user(): User {
     return this._user;
