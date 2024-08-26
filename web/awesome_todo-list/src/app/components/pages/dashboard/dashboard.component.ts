@@ -11,6 +11,7 @@ import { UpdateTaskStatus } from 'src/app/interfaces/update-task-status';
 import { TaskService } from 'src/app/services/task.service';
 import { MatDialog } from '@angular/material/dialog';
 import { EditTaskDialogComponent } from '../../dialogs/edit-task-dialog/edit-task-dialog.component';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -30,7 +31,14 @@ export class DashboardComponent {
 
   current_user!: UserResponse;
 
-  constructor(private taskService: TaskService, public dialog: MatDialog) {}
+  constructor(
+    private taskService: TaskService,
+    public dialog: MatDialog,
+    private authService: AuthService
+  ) {
+    this.current_user = authService.getCurrentUser();
+    this.getUserTasks(this.current_user);
+  }
 
   drop(event: CdkDragDrop<TaskResponse[]>) {
     const movedTask = event.item.data;

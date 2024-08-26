@@ -10,6 +10,7 @@ import { User } from './entities/user.entity';
 import { Repository } from 'typeorm';
 import { SignInDto } from './dto/signin-dto';
 import { JwtService } from '@nestjs/jwt';
+import { LoginResponse } from './dto/login-response.dto';
 
 /**
  * The UserService handles all operations related to users,
@@ -109,7 +110,7 @@ export class UserService {
     return this.userRepository.delete(id);
   }
 
-  async signIn(singInDto: SignInDto): Promise<{ access_token: string }> {
+  async signIn(singInDto: SignInDto): Promise<LoginResponse> {
     const user = await this.userRepository
       .createQueryBuilder('user')
       .where('user.username = :username', { username: singInDto.username })
@@ -118,8 +119,6 @@ export class UserService {
       throw new UnauthorizedException();
     }
     const payload = { sub: user.id, username: user.username };
-    return {
-      access_token: await this.jwtService.signAsync(payload),
-    };
+    return LoginResponse.of(user, await this.jwtService.signAsync(payload));
   }
 }

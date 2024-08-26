@@ -32,6 +32,7 @@ export class UserController {
    * @param {CreateUserDto} createUserDto - DTO containing the user creation details.
    * @returns {Promise<UserResponse>} The newly created user, formatted as a UserResponse.
    */
+  @Public()
   @Post()
   async create(@Body() createUserDto: CreateUserDto): Promise<UserResponse> {
     return UserResponse.of(await this.userService.create(createUserDto));
