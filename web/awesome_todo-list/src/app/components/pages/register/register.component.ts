@@ -9,14 +9,16 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent {
-  form: FormGroup;
+  registerForm: FormGroup;
+  formError = false;
+  errorMessages: string[] = [];
 
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
     private router: Router
   ) {
-    this.form = this.fb.group({
+    this.registerForm = this.fb.group({
       name: ['', Validators.required],
       username: ['', Validators.required],
       password: ['', Validators.required],
@@ -25,7 +27,7 @@ export class RegisterComponent {
   }
 
   register() {
-    const val = this.form.value;
+    const val = this.registerForm.value;
 
     if (val.username && val.password) {
       this.authService
@@ -35,10 +37,15 @@ export class RegisterComponent {
           password: val.password,
           email: val.email,
         })
-        .subscribe((response) => {
-          console.log(response);
-          this.authService.user = response;
-          this.router.navigate(['']);
+        .subscribe({
+          next: (response) => {
+            this.authService.user = response;
+            this.router.navigate(['']);
+          },
+          error: (error) => {
+            this.formError = true;
+            this.errorMessages = error.error.message;
+          },
         });
     }
   }

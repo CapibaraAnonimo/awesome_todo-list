@@ -79,7 +79,7 @@
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
-               <div class="content injectable">
+               <div class="content interceptor">
                    <div class="content-data">
 
 
@@ -89,9 +89,10 @@
 
 
 
+
 <ol class="breadcrumb">
-  <li class="breadcrumb-item">Injectables</li>
-  <li class="breadcrumb-item" >UserService</li>
+  <li class="breadcrumb-item">Interceptors</li>
+  <li class="breadcrumb-item" >TokenInterceptor</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -115,9 +116,8 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/app/services/user.service.ts</code>
+            <code>src/app/services/auth.interceptor.ts</code>
         </p>
-
 
 
 
@@ -136,7 +136,7 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#getAllUsers" >getAllUsers</a>
+                                <a href="#intercept" >intercept</a>
                             </li>
                         </ul>
                     </td>
@@ -156,12 +156,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(http: HttpClient)</code>
+<code>constructor(authService: <a href="../injectables/AuthService.html" target="_self">AuthService</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/app/services/user.service.ts:10</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/services/auth.interceptor.ts:44</a></div>
                             </td>
                         </tr>
 
@@ -179,10 +179,10 @@
                                         </thead>
                                         <tbody>
                                                 <tr>
-                                                        <td>http</td>
+                                                        <td>authService</td>
                                                   
                                                         <td>
-                                                                    <code>HttpClient</code>
+                                                                        <code><a href="../injectables/AuthService.html" target="_self" >AuthService</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -208,24 +208,24 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="getAllUsers"></a>
+                    <a name="intercept"></a>
                     <span class="name">
-                        <span ><b>getAllUsers</b></span>
-                        <a href="#getAllUsers"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>intercept</b></span>
+                        <a href="#intercept"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>getAllUsers()</code>
+<code>intercept(req: HttpRequest<any>, next: HttpHandler)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="13"
-                                    class="link-to-prism">src/app/services/user.service.ts:13</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="47"
+                                    class="link-to-prism">src/app/services/auth.interceptor.ts:47</a></div>
                         </td>
                     </tr>
 
@@ -233,10 +233,52 @@
             <tr>
                 <td class="col-md-4">
 
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>req</td>
+                                            <td>
+                                                        <code>HttpRequest&lt;any&gt;</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                        <tr>
+                                                <td>next</td>
+                                            <td>
+                                                        <code>HttpHandler</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="../interfaces/UserResponse.html" target="_self" >Observable&lt;UserResponse[]&gt;</a></code>
+                            <b>Returns : </b>    <code>Observable&lt;HttpEvent&lt;any&gt;&gt;</code>
 
                         </div>
+                            <div class="io-description">
+                                
+                            </div>
                 </td>
             </tr>
         </tbody>
@@ -247,29 +289,93 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { HttpClient, HttpHeaders } from &#x27;@angular/common/http&#x27;;
-import { Injectable } from &#x27;@angular/core&#x27;;
-import { Observable } from &#x27;rxjs&#x27;;
-import { environment } from &#x27;src/environments/environment&#x27;;
-import { UserResponse } from &#x27;../interfaces/user-response&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
+import {
+  HttpEvent,
+  HttpInterceptor,
+  HttpHandler,
+  HttpRequest,
+  HTTP_INTERCEPTORS,
+  HttpErrorResponse,
+} from &#x27;@angular/common/http&#x27;;
 
-@Injectable({
-  providedIn: &#x27;root&#x27;,
-})
-export class UserService {
-  constructor(private http: HttpClient) {}
+import { Observable, throwError } from &#x27;rxjs&#x27;;
+import { catchError } from &#x27;rxjs/operators&#x27;;
+import { AuthService } from &#x27;./auth.service&#x27;;
+import { Router } from &#x27;@angular/router&#x27;;
 
-  getAllUsers(): Observable&lt;UserResponse[]&gt; {
-    return this.http.get&lt;UserResponse[]&gt;(&#x60;${environment.apiBaseUrl}/user&#x60;, {
-      headers: new HttpHeaders().set(&#x27;Authorization&#x27;, &#x27;Bearer &#x27;),
+@Injectable()
+export class HttpRequestInterceptor implements HttpInterceptor {
+  constructor(private authService: AuthService, private router: Router) {}
+
+  intercept(
+    req: HttpRequest&lt;any&gt;,
+    next: HttpHandler
+  ): Observable&lt;HttpEvent&lt;any&gt;&gt; {
+    req &#x3D; req.clone({ withCredentials: true });
+
+    return next.handle(req).pipe(
+      catchError((error) &#x3D;&gt; {
+        if (error instanceof HttpErrorResponse &amp;&amp; error.status &#x3D;&#x3D;&#x3D; 401) {
+          this.authService.logout();
+          this.router.navigate([&#x27;/login&#x27;]);
+        }
+
+        return throwError(() &#x3D;&gt; error);
+      })
+    );
+  }
+}
+
+export const httpInterceptorProviders &#x3D; [
+  { provide: HTTP_INTERCEPTORS, useClass: HttpRequestInterceptor, multi: true },
+];
+
+@Injectable()
+export class TokenInterceptor implements HttpInterceptor {
+  constructor(private authService: AuthService) {}
+
+  intercept(
+    req: HttpRequest&lt;any&gt;,
+    next: HttpHandler
+  ): Observable&lt;HttpEvent&lt;any&gt;&gt; {
+    const token &#x3D; this.authService.getToken();
+
+    if (req.headers.has(&#x27;Authorization&#x27;) || req.url.includes(&#x27;download&#x27;)) {
+      const authReq &#x3D; req.clone({
+        setHeaders: {
+          Authorization: &#x60;Bearer ${token}&#x60;,
+        },
+      });
+
+      return next.handle(authReq);
+    }
+
+    return next.handle(req);
+  }
+}
+
+@Injectable()
+export class CorsInterceptor implements HttpInterceptor {
+  intercept(
+    req: HttpRequest&lt;any&gt;,
+    next: HttpHandler
+  ): Observable&lt;HttpEvent&lt;any&gt;&gt; {
+    const modifiedReq &#x3D; req.clone({
+      setHeaders: {
+        &#x27;Access-Control-Allow-Origin&#x27;: &#x27;http://localhost:8080&#x27;,
+        &#x27;Access-Control-Allow-Methods&#x27;: &#x27;GET, POST, PUT, DELETE&#x27;,
+        &#x27;Access-Control-Allow-Headers&#x27;:
+          &#x27;Origin, X-Requested-With, Content-Type, Accept&#x27;,
+      },
     });
+
+    return next.handle(modifiedReq);
   }
 }
 </code></pre>
     </div>
-
 </div>
-
 
 
 
@@ -307,8 +413,8 @@ export class UserService {
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
-            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
-            var COMPODOC_CURRENT_PAGE_URL = 'UserService.html';
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'interceptor';
+            var COMPODOC_CURRENT_PAGE_URL = 'TokenInterceptor.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

@@ -1,5 +1,5 @@
 <div class="container">
-  <form [formGroup]="form">
+  <form [formGroup]="loginForm">
     <p>
       <mat-form-field>
         <mat-label>Username:</mat-label>
@@ -11,6 +11,9 @@
         <mat-label>Password:</mat-label>
         <input matInput name="password" formControlName="password" />
       </mat-form-field>
+    </p>
+    <p *ngIf="formError" style="color: #b71c1c">
+      Usuario o Contraseña incorrecto
     </p>
     <div>
       <button mat-raised-button color="primary" (click)="login()">Login</button>

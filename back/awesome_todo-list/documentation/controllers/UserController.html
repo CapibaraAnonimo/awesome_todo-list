@@ -150,24 +150,25 @@ Defines the routes and methods for CRUD operations on users.</p>
                         <ul class="index-list">
                             <li>
                                     <span class="modifier"></span>
+                                    <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Async</span>
                                 <a href="#create" >create</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                     <span class="modifier"></span>
                                     <span class="modifier">Async</span>
                                 <a href="#findAll" >findAll</a>
                             </li>
                             <li>
                                     <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Async</span>
                                 <a href="#findOne" >findOne</a>
                             </li>
                             <li>
                                     <span class="modifier"></span>
-                                <a href="#getProfile" >getProfile</a>
-                            </li>
-                            <li>
                                     <span class="modifier"></span>
                                 <a href="#remove" >remove</a>
                             </li>
@@ -178,6 +179,7 @@ Defines the routes and methods for CRUD operations on users.</p>
                                 <a href="#signIn" >signIn</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                     <span class="modifier"></span>
                                     <span class="modifier">Async</span>
                                 <a href="#update" >update</a>
@@ -206,6 +208,8 @@ Defines the routes and methods for CRUD operations on users.</p>
                     <a name="create"></a>
                     <span class="name">
                             <span class="modifier"></span>
+                            <span class="modifier"></span>
+                            <span class="modifier"></span>
                             <span class="modifier">Async</span>
                         <span ><b>create</b></span>
                         <a href="#create"><span class="icon ion-ios-link"></span></a>
@@ -223,14 +227,14 @@ Defines the routes and methods for CRUD operations on users.</p>
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Post()<br /></code>
+                    <code>@Public()<br />@HttpCode(HttpStatus.CREATED)<br />@Post()<br /></code>
                 </td>
             </tr>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="36"
-                                    class="link-to-prism">src/user/user.controller.ts:36</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="38"
+                                    class="link-to-prism">src/user/user.controller.ts:38</a></div>
                         </td>
                     </tr>
 
@@ -293,6 +297,7 @@ Defines the routes and methods for CRUD operations on users.</p>
                     <a name="findAll"></a>
                     <span class="name">
                             <span class="modifier"></span>
+                            <span class="modifier"></span>
                             <span class="modifier">Async</span>
                         <span ><b>findAll</b></span>
                         <a href="#findAll"><span class="icon ion-ios-link"></span></a>
@@ -310,14 +315,14 @@ Defines the routes and methods for CRUD operations on users.</p>
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get()<br /></code>
+                    <code>@Get()<br />@HttpCode(HttpStatus.OK)<br /></code>
                 </td>
             </tr>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="46"
-                                    class="link-to-prism">src/user/user.controller.ts:46</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="49"
+                                    class="link-to-prism">src/user/user.controller.ts:49</a></div>
                         </td>
                     </tr>
 
@@ -346,6 +351,7 @@ Defines the routes and methods for CRUD operations on users.</p>
                     <a name="findOne"></a>
                     <span class="name">
                             <span class="modifier"></span>
+                            <span class="modifier"></span>
                             <span class="modifier">Async</span>
                         <span ><b>findOne</b></span>
                         <a href="#findOne"><span class="icon ion-ios-link"></span></a>
@@ -363,14 +369,14 @@ Defines the routes and methods for CRUD operations on users.</p>
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Get(&#x27;:id&#x27;)<br /></code>
+                    <code>@Get(&#x27;:id&#x27;)<br />@HttpCode(HttpStatus.OK)<br /></code>
                 </td>
             </tr>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="58"
-                                    class="link-to-prism">src/user/user.controller.ts:58</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="62"
+                                    class="link-to-prism">src/user/user.controller.ts:62</a></div>
                         </td>
                     </tr>
 
@@ -430,80 +436,9 @@ Defines the routes and methods for CRUD operations on users.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="getProfile"></a>
-                    <span class="name">
-                            <span class="modifier"></span>
-                        <span ><b>getProfile</b></span>
-                        <a href="#getProfile"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                        <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>getProfile(req)</code>
-                </td>
-            </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <b>Decorators : </b>
-                    <br />
-                    <code>@Get(&#x27;profile&#x27;)<br /></code>
-                </td>
-            </tr>
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="93"
-                                    class="link-to-prism">src/user/user.controller.ts:93</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                            <td>Optional</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>req</td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-
-                        </div>
-                            <div class="io-description">
-                                
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
                     <a name="remove"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                             <span class="modifier"></span>
                         <span ><b>remove</b></span>
                         <a href="#remove"><span class="icon ion-ios-link"></span></a>
@@ -521,14 +456,14 @@ Defines the routes and methods for CRUD operations on users.</p>
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Delete(&#x27;:id&#x27;)<br /></code>
+                    <code>@HttpCode(HttpStatus.OK)<br />@Delete(&#x27;:id&#x27;)<br /></code>
                 </td>
             </tr>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="81"
-                                    class="link-to-prism">src/user/user.controller.ts:81</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="87"
+                                    class="link-to-prism">src/user/user.controller.ts:87</a></div>
                         </td>
                     </tr>
 
@@ -615,8 +550,8 @@ Defines the routes and methods for CRUD operations on users.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="88"
-                                    class="link-to-prism">src/user/user.controller.ts:88</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="94"
+                                    class="link-to-prism">src/user/user.controller.ts:94</a></div>
                         </td>
                     </tr>
 
@@ -669,6 +604,7 @@ Defines the routes and methods for CRUD operations on users.</p>
                     <a name="update"></a>
                     <span class="name">
                             <span class="modifier"></span>
+                            <span class="modifier"></span>
                             <span class="modifier">Async</span>
                         <span ><b>update</b></span>
                         <a href="#update"><span class="icon ion-ios-link"></span></a>
@@ -686,14 +622,14 @@ Defines the routes and methods for CRUD operations on users.</p>
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@Patch(&#x27;:id&#x27;)<br /></code>
+                    <code>@HttpCode(HttpStatus.OK)<br />@Patch(&#x27;:id&#x27;)<br /></code>
                 </td>
             </tr>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="70"
-                                    class="link-to-prism">src/user/user.controller.ts:70</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="75"
+                                    class="link-to-prism">src/user/user.controller.ts:75</a></div>
                         </td>
                     </tr>
 
@@ -789,7 +725,7 @@ import { UpdateUserDto } from &#x27;./dto/update-user.dto&#x27;;
 import { UserResponse } from &#x27;./dto/user-response.dto&#x27;;
 import { User } from &#x27;./entities/user.entity&#x27;;
 import { SignInDto } from &#x27;./dto/signin-dto&#x27;;
-import { AuthGuard, Public } from &#x27;./auth.guard&#x27;;
+import { Public } from &#x27;./auth.guard&#x27;;
 
 /**
  * Controller for handling user-related requests.
@@ -805,6 +741,8 @@ export class UserController {
    * @param {CreateUserDto} createUserDto - DTO containing the user creation details.
    * @returns {Promise&lt;UserResponse&gt;} The newly created user, formatted as a UserResponse.
    */
+  @Public()
+  @HttpCode(HttpStatus.CREATED)
   @Post()
   async create(@Body() createUserDto: CreateUserDto): Promise&lt;UserResponse&gt; {
     return UserResponse.of(await this.userService.create(createUserDto));
@@ -816,6 +754,7 @@ export class UserController {
    * @returns {Promise&lt;UserResponse[]&gt;} An array of all users, each formatted as a UserResponse.
    */
   @Get()
+  @HttpCode(HttpStatus.OK)
   async findAll() {
     const users: User[] &#x3D; await this.userService.findAll();
     return users.map((user) &#x3D;&gt; UserResponse.of(user));
@@ -828,6 +767,7 @@ export class UserController {
    * @returns {Promise&lt;UserResponse&gt;} The user with the specified ID, formatted as a UserResponse.
    */
   @Get(&#x27;:id&#x27;)
+  @HttpCode(HttpStatus.OK)
   async findOne(@Param(&#x27;id&#x27;) id: string) {
     return UserResponse.of(await this.userService.findOne(id));
   }
@@ -839,6 +779,7 @@ export class UserController {
    * @param {UpdateUserDto} updateUserDto - DTO containing the updated user details.
    * @returns {Promise&lt;UserResponse&gt;} The updated user, formatted as a UserResponse.
    */
+  @HttpCode(HttpStatus.OK)
   @Patch(&#x27;:id&#x27;)
   async update(@Param(&#x27;id&#x27;) id: string, @Body() updateUserDto: UpdateUserDto) {
     return UserResponse.of(await this.userService.update(id, updateUserDto));
@@ -850,6 +791,7 @@ export class UserController {
    * @param {string} id - The ID of the user to delete.
    * @returns An empty response, indicating the user was successfully deleted.
    */
+  @HttpCode(HttpStatus.OK)
   @Delete(&#x27;:id&#x27;)
   remove(@Param(&#x27;id&#x27;) id: string) {
     return this.userService.remove(id);
@@ -860,11 +802,6 @@ export class UserController {
   @Post(&#x27;login&#x27;)
   signIn(@Body() signInDto: SignInDto) {
     return this.userService.signIn(signInDto);
-  }
-
-  @Get(&#x27;profile&#x27;)
-  getProfile(@Request() req) {
-    return req.user;
   }
 }
 </code></pre>

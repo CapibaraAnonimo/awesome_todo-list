@@ -53,13 +53,10 @@ export class AuthService {
   }
 
   getToken(): String {
-    console.log(this.user);
     return this.user != undefined ? this.user.access_token : '';
   }
 
   isAuthenticated() {
-    console.log('IsAuth');
-    console.log(this.user);
     return this.user != null;
   }
 

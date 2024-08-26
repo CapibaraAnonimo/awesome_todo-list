@@ -2,8 +2,6 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { NewTaskDialogComponent } from '../../dialogs/new-task-dialog/new-task-dialog.component';
 import { UserResponse } from 'src/app/interfaces/user-response';
 import { MatDialog } from '@angular/material/dialog';
-import { TaskService } from 'src/app/services/task.service';
-import { UserService } from 'src/app/services/user.service';
 import { TaskResponse } from 'src/app/interfaces/task-response';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -25,8 +23,6 @@ export class DashboardToolbarComponent {
   }
 
   openDialogNewTask() {
-    console.log("dialogo")
-    console.log(this.current_user);
     const dialogRef = this.dialog.open(NewTaskDialogComponent, {
       data: this.current_user.id,
     });

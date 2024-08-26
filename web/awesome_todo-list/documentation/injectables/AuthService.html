@@ -91,7 +91,7 @@
 
 <ol class="breadcrumb">
   <li class="breadcrumb-item">Injectables</li>
-  <li class="breadcrumb-item" >TaskService</li>
+  <li class="breadcrumb-item" >AuthService</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -115,7 +115,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/app/services/task.service.ts</code>
+            <code>src/app/services/auth.service.ts</code>
         </p>
 
 
@@ -126,6 +126,20 @@
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#user" >user</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
 
                 <tr>
                     <td class="col-md-4">
@@ -136,19 +150,22 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#changeStatus" >changeStatus</a>
+                                <a href="#getCurrentUser" >getCurrentUser</a>
                             </li>
                             <li>
-                                <a href="#deleteTask" >deleteTask</a>
+                                <a href="#getToken" >getToken</a>
                             </li>
                             <li>
-                                <a href="#getTasksByUser" >getTasksByUser</a>
+                                <a href="#isAuthenticated" >isAuthenticated</a>
                             </li>
                             <li>
-                                <a href="#patchTask" >patchTask</a>
+                                <a href="#login" >login</a>
                             </li>
                             <li>
-                                <a href="#postTask" >postTask</a>
+                                <a href="#logout" >logout</a>
+                            </li>
+                            <li>
+                                <a href="#register" >register</a>
                             </li>
                         </ul>
                     </td>
@@ -168,12 +185,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(http: HttpClient)</code>
+<code>constructor(http: HttpClient, router: Router)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/services/task.service.ts:13</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/services/auth.service.ts:16</a></div>
                             </td>
                         </tr>
 
@@ -202,6 +219,18 @@
                                                     </td>
                                                     
                                                 </tr>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                    <code>Router</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
                                         </tbody>
                                     </table>
                             </div>
@@ -220,24 +249,135 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="changeStatus"></a>
+                    <a name="getCurrentUser"></a>
                     <span class="name">
-                        <span ><b>changeStatus</b></span>
-                        <a href="#changeStatus"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>getCurrentUser</b></span>
+                        <a href="#getCurrentUser"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>changeStatus(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, status: <a href="../interfaces/UpdateTaskStatus.html" target="_self">UpdateTaskStatus</a>)</code>
+<code>getCurrentUser()</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="25"
-                                    class="link-to-prism">src/app/services/task.service.ts:25</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="63"
+                                    class="link-to-prism">src/app/services/auth.service.ts:63</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="../interfaces/UserResponse.html" target="_self" >UserResponse</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getToken"></a>
+                    <span class="name">
+                        <span ><b>getToken</b></span>
+                        <a href="#getToken"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getToken()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="55"
+                                    class="link-to-prism">src/app/services/auth.service.ts:55</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" target="_blank" >String</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isAuthenticated"></a>
+                    <span class="name">
+                        <span ><b>isAuthenticated</b></span>
+                        <a href="#isAuthenticated"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>isAuthenticated()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="59"
+                                    class="link-to-prism">src/app/services/auth.service.ts:59</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="login"></a>
+                    <span class="name">
+                        <span ><b>login</b></span>
+                        <a href="#login"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>login(login: <a href="../interfaces/SignIn.html" target="_self">SignIn</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="22"
+                                    class="link-to-prism">src/app/services/auth.service.ts:22</a></div>
                         </td>
                     </tr>
 
@@ -258,21 +398,9 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                                <td>id</td>
+                                                <td>login</td>
                                             <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                        </tr>
-                                        <tr>
-                                                <td>status</td>
-                                            <td>
-                                                            <code><a href="../interfaces/UpdateTaskStatus.html" target="_self" >UpdateTaskStatus</a></code>
+                                                            <code><a href="../interfaces/SignIn.html" target="_self" >SignIn</a></code>
                                             </td>
 
                                             <td>
@@ -285,7 +413,7 @@
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="../interfaces/TaskResponse.html" target="_self" >Observable&lt;TaskResponse&gt;</a></code>
+                            <b>Returns : </b>        <code><a href="../interfaces/LoginResponse.html" target="_self" >Observable&lt;LoginResponse&gt;</a></code>
 
                         </div>
                             <div class="io-description">
@@ -299,24 +427,24 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="deleteTask"></a>
+                    <a name="logout"></a>
                     <span class="name">
-                        <span ><b>deleteTask</b></span>
-                        <a href="#deleteTask"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>logout</b></span>
+                        <a href="#logout"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>deleteTask(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+<code>logout()</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="61"
-                                    class="link-to-prism">src/app/services/task.service.ts:61</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="39"
+                                    class="link-to-prism">src/app/services/auth.service.ts:39</a></div>
                         </td>
                     </tr>
 
@@ -324,40 +452,10 @@
             <tr>
                 <td class="col-md-4">
 
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>id</td>
-                                            <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                         </div>
-                            <div class="io-description">
-                                
-                            </div>
                 </td>
             </tr>
         </tbody>
@@ -366,24 +464,24 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="getTasksByUser"></a>
+                    <a name="register"></a>
                     <span class="name">
-                        <span ><b>getTasksByUser</b></span>
-                        <a href="#getTasksByUser"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>register</b></span>
+                        <a href="#register"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>getTasksByUser(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+<code>register(register: <a href="../interfaces/CreateUser.html" target="_self">CreateUser</a>)</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="16"
-                                    class="link-to-prism">src/app/services/task.service.ts:16</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="45"
+                                    class="link-to-prism">src/app/services/auth.service.ts:45</a></div>
                         </td>
                     </tr>
 
@@ -404,9 +502,9 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                                <td>id</td>
+                                                <td>register</td>
                                             <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                            <code><a href="../interfaces/CreateUser.html" target="_self" >CreateUser</a></code>
                                             </td>
 
                                             <td>
@@ -419,153 +517,7 @@
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>        <code><a href="../interfaces/TaskResponse.html" target="_self" >Observable&lt;TaskResponse[]&gt;</a></code>
-
-                        </div>
-                            <div class="io-description">
-                                
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="patchTask"></a>
-                    <span class="name">
-                        <span ><b>patchTask</b></span>
-                        <a href="#patchTask"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>patchTask(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, patchTask: <a href="../interfaces/PatchTask.html" target="_self">PatchTask</a>)</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="49"
-                                    class="link-to-prism">src/app/services/task.service.ts:49</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>id</td>
-                                            <td>
-                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                        </tr>
-                                        <tr>
-                                                <td>patchTask</td>
-                                            <td>
-                                                            <code><a href="../interfaces/PatchTask.html" target="_self" >PatchTask</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="../interfaces/TaskResponse.html" target="_self" >Observable&lt;TaskResponse&gt;</a></code>
-
-                        </div>
-                            <div class="io-description">
-                                
-                            </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="postTask"></a>
-                    <span class="name">
-                        <span ><b>postTask</b></span>
-                        <a href="#postTask"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>postTask(createTask: <a href="../interfaces/CreateTask.html" target="_self">CreateTask</a>)</code>
-                </td>
-            </tr>
-
-
-                    <tr>
-                        <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="37"
-                                    class="link-to-prism">src/app/services/task.service.ts:37</a></div>
-                        </td>
-                    </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                            <div class="io-description">
-                                <b>Parameters :</b>
-                                
-                                <table class="params">
-                                    <thead>
-                                        <tr>
-                                            <td>Name</td>
-                                                <td>Type</td>
-                                            <td>Optional</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                                <td>createTask</td>
-                                            <td>
-                                                            <code><a href="../interfaces/CreateTask.html" target="_self" >CreateTask</a></code>
-                                            </td>
-
-                                            <td>
-                                                    No
-                                            </td>
-
-
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        <div class="io-description">
-                            <b>Returns : </b>        <code><a href="../interfaces/TaskResponse.html" target="_self" >Observable&lt;TaskResponse&gt;</a></code>
+                            <b>Returns : </b>        <code><a href="../interfaces/LoginResponse.html" target="_self" >Observable&lt;LoginResponse&gt;</a></code>
 
                         </div>
                             <div class="io-description">
@@ -576,75 +528,112 @@
         </tbody>
     </table>
 </section>
+            <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="user"></a>
+                    <span class="name">
+                        <span ><b>user</b></span>
+                        <a href="#user"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/LoginResponse.html" target="_self" >LoginResponse | null</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/services/auth.service.ts:16</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
 
     </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { HttpClient, HttpHeaders } from &#x27;@angular/common/http&#x27;;
-import { Injectable } from &#x27;@angular/core&#x27;;
+import { Observable, tap } from &#x27;rxjs&#x27;;
 import { TaskResponse } from &#x27;../interfaces/task-response&#x27;;
-import { Observable } from &#x27;rxjs&#x27;;
 import { environment } from &#x27;src/environments/environment&#x27;;
-import { UpdateTaskStatus } from &#x27;../interfaces/update-task-status&#x27;;
-import { CreateTask } from &#x27;../interfaces/create-task&#x27;;
-import { PatchTask } from &#x27;../interfaces/patch-task&#x27;;
+import { SignIn } from &#x27;../interfaces/sign-in&#x27;;
+import { Injectable } from &#x27;@angular/core&#x27;;
+import { LoginResponse } from &#x27;../interfaces/login-response&#x27;;
+import { Router } from &#x27;@angular/router&#x27;;
+import { UserResponse } from &#x27;../interfaces/user-response&#x27;;
+import { CreateUser } from &#x27;../interfaces/create-user&#x27;;
 
 @Injectable({
   providedIn: &#x27;root&#x27;,
 })
-export class TaskService {
-  constructor(private http: HttpClient) {}
+export class AuthService {
+  user!: LoginResponse | null;
 
-  getTasksByUser(id: string): Observable&lt;TaskResponse[]&gt; {
-    return this.http.get&lt;TaskResponse[]&gt;(
-      &#x60;${environment.apiBaseUrl}/task/user/${id}&#x60;,
+  constructor(private http: HttpClient, private router: Router) {
+    this.user &#x3D; JSON.parse(localStorage.getItem(&#x27;user&#x27;) || &#x27;null&#x27;);
+  }
+
+  login(login: SignIn): Observable&lt;LoginResponse&gt; {
+    return this.http
+      .post&lt;LoginResponse&gt;(
+        &#x60;${environment.apiBaseUrl}/user/login&#x60;,
+        JSON.stringify(login),
+        {
+          headers: new HttpHeaders().set(&#x27;Content-Type&#x27;, &#x27;application/json&#x27;),
+        }
+      )
+      .pipe(
+        tap((user) &#x3D;&gt; {
+          this.user &#x3D; user;
+          localStorage.setItem(&#x27;user&#x27;, JSON.stringify(user));
+        })
+      );
+  }
+
+  logout() {
+    this.user &#x3D; null;
+    localStorage.removeItem(&#x27;user&#x27;);
+    this.router.navigate([&#x27;/login&#x27;]);
+  }
+
+  register(register: CreateUser): Observable&lt;LoginResponse&gt; {
+    return this.http.post&lt;LoginResponse&gt;(
+      &#x60;${environment.apiBaseUrl}/user&#x60;,
+      JSON.stringify(register),
       {
-        headers: new HttpHeaders().set(&#x27;Authorization&#x27;, &#x27;Bearer &#x27;),
+        headers: new HttpHeaders().set(&#x27;Content-Type&#x27;, &#x27;application/json&#x27;),
       }
     );
   }
 
-  changeStatus(id: string, status: UpdateTaskStatus): Observable&lt;TaskResponse&gt; {
-    return this.http.patch&lt;TaskResponse&gt;(
-      &#x60;${environment.apiBaseUrl}/task/status/${id}&#x60;,
-      JSON.stringify(status),
-      {
-        headers: new HttpHeaders()
-          .set(&#x27;Authorization&#x27;, &#x27;Bearer &#x27;)
-          .set(&#x27;Content-Type&#x27;, &#x27;application/json&#x27;),
-      }
-    );
+  getToken(): String {
+    return this.user !&#x3D; undefined ? this.user.access_token : &#x27;&#x27;;
   }
 
-  postTask(createTask: CreateTask): Observable&lt;TaskResponse&gt; {
-    return this.http.post&lt;TaskResponse&gt;(
-      &#x60;${environment.apiBaseUrl}/task&#x60;,
-      JSON.stringify(createTask),
-      {
-        headers: new HttpHeaders()
-          .set(&#x27;Authorization&#x27;, &#x27;Bearer &#x27;)
-          .set(&#x27;Content-Type&#x27;, &#x27;application/json&#x27;),
-      }
-    );
+  isAuthenticated() {
+    return this.user !&#x3D; null;
   }
 
-  patchTask(id: string, patchTask: PatchTask): Observable&lt;TaskResponse&gt; {
-    return this.http.patch&lt;TaskResponse&gt;(
-      &#x60;${environment.apiBaseUrl}/task/${id}&#x60;,
-      JSON.stringify(patchTask),
-      {
-        headers: new HttpHeaders()
-          .set(&#x27;Authorization&#x27;, &#x27;Bearer &#x27;)
-          .set(&#x27;Content-Type&#x27;, &#x27;application/json&#x27;),
-      }
-    );
-  }
-
-  deleteTask(id: string) {
-    return this.http.delete(&#x60;${environment.apiBaseUrl}/task/${id}&#x60;, {
-      headers: new HttpHeaders().set(&#x27;Authorization&#x27;, &#x27;Bearer &#x27;),
-    });
+  getCurrentUser(): UserResponse {
+    return {
+      id: this.user!.id,
+      name: this.user!.name,
+      email: this.user!.email,
+      username: this.user!.username,
+    };
   }
 }
 </code></pre>
@@ -690,7 +679,7 @@ export class TaskService {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
-            var COMPODOC_CURRENT_PAGE_URL = 'TaskService.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'AuthService.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

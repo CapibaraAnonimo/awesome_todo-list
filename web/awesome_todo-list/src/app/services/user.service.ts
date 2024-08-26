@@ -11,7 +11,6 @@ export class UserService {
   constructor(private http: HttpClient) {}
 
   getAllUsers(): Observable<UserResponse[]> {
-    console.log('En la request');
     return this.http.get<UserResponse[]>(`${environment.apiBaseUrl}/user`, {
       headers: new HttpHeaders().set('Authorization', 'Bearer '),
     });

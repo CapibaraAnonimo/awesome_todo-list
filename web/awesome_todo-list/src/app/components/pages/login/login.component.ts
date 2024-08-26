@@ -1,12 +1,6 @@
 import { Component } from '@angular/core';
-import {
-  AbstractControl,
-  FormBuilder,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { SignIn } from 'src/app/interfaces/sign-in';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -15,21 +9,22 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
-  form: FormGroup;
+  loginForm: FormGroup;
+  formError = false;
 
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
     private router: Router
   ) {
-    this.form = this.fb.group({
+    this.loginForm = this.fb.group({
       username: ['', Validators.required],
       password: ['', Validators.required],
     });
   }
 
   login() {
-    const val = this.form.value;
+    const val = this.loginForm.value;
 
     if (val.username && val.password) {
       this.authService
@@ -37,10 +32,16 @@ export class LoginComponent {
           username: val.username,
           password: val.password,
         })
-        .subscribe((response) => {
-          console.log(response);
-          this.authService.user = response;
-          this.router.navigate(['']);
+        .subscribe({
+          next: (response) => {
+            this.authService.user = response;
+            this.router.navigate(['']);
+          },
+          error: (error) => {
+            if (error.status) {
+              this.formError = true;
+            }
+          },
         });
     }
   }

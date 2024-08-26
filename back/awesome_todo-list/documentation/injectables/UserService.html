@@ -187,7 +187,7 @@ including creating, finding, updating, and deleting user records.</p>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/user/user.service.ts:19</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/user/user.service.ts:20</a></div>
                             </td>
                         </tr>
 
@@ -262,8 +262,8 @@ including creating, finding, updating, and deleting user records.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="31"
-                                    class="link-to-prism">src/user/user.service.ts:31</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="32"
+                                    class="link-to-prism">src/user/user.service.ts:32</a></div>
                         </td>
                     </tr>
 
@@ -339,8 +339,8 @@ including creating, finding, updating, and deleting user records.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="47"
-                                    class="link-to-prism">src/user/user.service.ts:47</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="48"
+                                    class="link-to-prism">src/user/user.service.ts:48</a></div>
                         </td>
                     </tr>
 
@@ -384,8 +384,8 @@ including creating, finding, updating, and deleting user records.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="58"
-                                    class="link-to-prism">src/user/user.service.ts:58</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="59"
+                                    class="link-to-prism">src/user/user.service.ts:59</a></div>
                         </td>
                     </tr>
 
@@ -461,8 +461,8 @@ including creating, finding, updating, and deleting user records.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="103"
-                                    class="link-to-prism">src/user/user.service.ts:103</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="104"
+                                    class="link-to-prism">src/user/user.service.ts:104</a></div>
                         </td>
                     </tr>
 
@@ -540,8 +540,8 @@ including creating, finding, updating, and deleting user records.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="112"
-                                    class="link-to-prism">src/user/user.service.ts:112</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="113"
+                                    class="link-to-prism">src/user/user.service.ts:113</a></div>
                         </td>
                     </tr>
 
@@ -577,7 +577,7 @@ including creating, finding, updating, and deleting user records.</p>
                                 </table>
                             </div>
                         <div class="io-description">
-                            <b>Returns : </b>    <code>Promise&lt;literal type&gt;</code>
+                            <b>Returns : </b>        <code><a href="../classes/LoginResponse.html" target="_self" >Promise&lt;LoginResponse&gt;</a></code>
 
                         </div>
                             <div class="io-description">
@@ -609,8 +609,8 @@ including creating, finding, updating, and deleting user records.</p>
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="78"
-                                    class="link-to-prism">src/user/user.service.ts:78</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="79"
+                                    class="link-to-prism">src/user/user.service.ts:79</a></div>
                         </td>
                     </tr>
 
@@ -702,6 +702,7 @@ import { User } from &#x27;./entities/user.entity&#x27;;
 import { Repository } from &#x27;typeorm&#x27;;
 import { SignInDto } from &#x27;./dto/signin-dto&#x27;;
 import { JwtService } from &#x27;@nestjs/jwt&#x27;;
+import { LoginResponse } from &#x27;./dto/login-response.dto&#x27;;
 
 /**
  * The UserService handles all operations related to users,
@@ -801,7 +802,7 @@ export class UserService {
     return this.userRepository.delete(id);
   }
 
-  async signIn(singInDto: SignInDto): Promise&lt;{ access_token: string }&gt; {
+  async signIn(singInDto: SignInDto): Promise&lt;LoginResponse&gt; {
     const user &#x3D; await this.userRepository
       .createQueryBuilder(&#x27;user&#x27;)
       .where(&#x27;user.username &#x3D; :username&#x27;, { username: singInDto.username })
@@ -810,9 +811,7 @@ export class UserService {
       throw new UnauthorizedException();
     }
     const payload &#x3D; { sub: user.id, username: user.username };
-    return {
-      access_token: await this.jwtService.signAsync(payload),
-    };
+    return LoginResponse.of(user, await this.jwtService.signAsync(payload));
   }
 }
 </code></pre>
