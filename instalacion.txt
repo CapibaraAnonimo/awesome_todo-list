@@ -1,9 +1,35 @@
-Para la ejecución de la aplicación con postgreSQL hara falta la instalación del paquete para esta base de datos del ORM typeorm usando "npm install --save @nestjs/typeorm typeorm pg"
+Pasos para la puesta en funcionamiento de la base de datos postgreSQL:
 
-Para la validación de datos descargamos las siguientes dependencias "npm i --save class-validator class-transformer"
+- Tener instalada la última versión de postgreSQL.
+- Crear una base de datos con los siguientes datos:
+	- Puerto: 5432
+	- Nombre: awesome_todo-list
+	- Contraseña: admin
+- Restaurar la base de datos usando el back up proporcionado.
+- Otra opción es crear una base de datos personalizada y cambiar las opciones de conexión de la API desde app.modules.ts.
 
-Para la creación de los JWT usaremos "npm install --save @nestjs/jwt"
+Pasos para la puesta en funcionamiento de la aplicación de angular:
 
-Para la documentación usaremos instalaremos compodoc "npm install -g @compodoc/compodoc"
+- Tener instalado node de la página oficial (versión v18.16.0).
+- Tener instalado npm (versión 9.5.1).
+- Tener instalado angular (npm install -g @angular/cli@16.0.4).
+- Instalar las dependencias del proyecto (npm install).
+- Ejecutarlo con ng serve.
 
-Estoy investigando el tema de lazy y eager en nestJS, ya que no funciona igual que en java.
+Pasos para la puesta en funcionamiento de la API de nestJS:
+
+- Tener instalado node de la página oficial (versión v18.16.0).
+- Tener instalado npm (versión 9.5.1).
+- Tener instalado angular (npm install -g @nestjs/cli@10.4.4).
+- Instalar las dependencias del proyecto (npm install).
+- Ejecutarlo con npm run start.
+
+De manera adicional, es posible que tengamos que instalar lo siguiente:
+
+Para la ejecución de la aplicación con postgreSQL hará falta la instalación del paquete para esta base de datos del ORM typeorm usando "npm install --save @nestjs/typeorm typeorm pg".
+
+Para la validación de datos descargamos las siguientes dependencias "npm i --save class-validator class-transformer".
+
+Para la creación de los JWT usaremos "npm install --save @nestjs/jwt".
+
+Para la documentación instalaremos compodoc "npm install -g @compodoc/compodoc".
