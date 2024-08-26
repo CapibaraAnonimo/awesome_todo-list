@@ -242,7 +242,7 @@ import { TaskResponse } from &#x27;src/app/interfaces/task-response&#x27;;
 @Component({
   selector: &#x27;app-task-content&#x27;,
   templateUrl: &#x27;./task-content.component.html&#x27;,
-  styleUrls: [&#x27;./task-content.component.css&#x27;]
+  styleUrls: [&#x27;./task-content.component.css&#x27;],
 })
 export class TaskContentComponent {
   @Input() task!: TaskResponse;
@@ -309,7 +309,7 @@ export class TaskContentComponent {
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
         var COMPONENT_TEMPLATE = '<div><div style="display: flex; flex-direction: column">  <div style="display: flex; justify-content: space-between">    <h1>{{ task.title }}</h1>    <div style="display: flex; align-items: center">      {{ task.creationDate }}    </div>  </div>  <p class="scrollable-text">    {{ task.description }}  </p></div></div>'
-    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DashboardToolbarComponent', 'selector': 'app-dashboard-toolbar'},{'name': 'EditTaskDialogComponent', 'selector': 'app-edit-task-dialog'},{'name': 'NewTaskDialogComponent', 'selector': 'app-new-task-dialog'},{'name': 'TaskContentComponent', 'selector': 'app-task-content'}];
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DashboardToolbarComponent', 'selector': 'app-dashboard-toolbar'},{'name': 'EditTaskDialogComponent', 'selector': 'app-edit-task-dialog'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'NewTaskDialogComponent', 'selector': 'app-new-task-dialog'},{'name': 'RegisterComponent', 'selector': 'app-register'},{'name': 'TaskContentComponent', 'selector': 'app-task-content'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'TaskContentComponent'};
 </script>

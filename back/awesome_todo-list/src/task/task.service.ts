@@ -5,7 +5,6 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Task } from './entities/task.entity';
 import { User } from 'src/user/entities/user.entity';
-import { TaskStatus } from './taskStatus';
 import { UpdateTaskStatusDto } from './dto/update-task-status.dto';
 
 /**
@@ -30,7 +29,10 @@ export class TaskService {
       new Task(
         createTaskDto.title,
         createTaskDto.description,
-        await this.userRepository.findOneBy({ id: createTaskDto.user_id }),
+        await this.userRepository
+          .createQueryBuilder('user')
+          .where('user.id = :id', { id: createTaskDto.user_id })
+          .getOne(),
       ),
     );
   }
@@ -41,7 +43,10 @@ export class TaskService {
    * @returns {Promise<Task[]>}  A promise that resolves to an array of tasks.
    */
   findAll(): Promise<Task[]> {
-    return this.taskRepository.find();
+    return this.taskRepository
+      .createQueryBuilder('task')
+      .leftJoinAndSelect('task._user', 'user')
+      .getMany();
   }
 
   /**
@@ -72,7 +77,11 @@ export class TaskService {
    * @throws {NotFoundException} NotFoundException if no task is found with the given ID.
    */
   async findOne(id: string) {
-    let task = await this.taskRepository.findOneBy({ id });
+    let task = await this.taskRepository
+      .createQueryBuilder('task')
+      .leftJoinAndSelect('task._user', 'user')
+      .where('task.id = :id', { id: id })
+      .getOne();
     console.log(task);
     if (task !== null) {
       return task;
@@ -90,7 +99,11 @@ export class TaskService {
    * @throws {NotFoundException} NotFoundException if no task is found with the given ID.
    */
   async update(id: string, updateTaskDto: UpdateTaskDto) {
-    let task = await this.taskRepository.findOneBy({ id });
+    let task = await this.taskRepository
+      .createQueryBuilder('task')
+      .leftJoinAndSelect('task._user', 'user')
+      .where('task.id = :id', { id: id })
+      .getOne();
 
     if (task !== null) {
       for (const [key, value] of Object.entries(updateTaskDto)) {
@@ -114,7 +127,11 @@ export class TaskService {
    * @throws {NotFoundException} NotFoundException if no task is found with the given ID.
    */
   async updateStatus(id: string, status: UpdateTaskStatusDto) {
-    let task = await this.taskRepository.findOneBy({ id });
+    let task = await this.taskRepository
+      .createQueryBuilder('task')
+      .leftJoinAndSelect('task._user', 'user')
+      .where('task.id = :id', { id: id })
+      .getOne();
 
     if (task !== null) {
       task.status = status.status;

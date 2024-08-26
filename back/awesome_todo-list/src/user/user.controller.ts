@@ -3,15 +3,20 @@ import {
   Get,
   Post,
   Body,
+  Request,
   Patch,
   Param,
   Delete,
+  HttpCode,
+  HttpStatus,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { UserResponse } from './dto/user-response.dto';
 import { User } from './entities/user.entity';
+import { SignInDto } from './dto/signin-dto';
+import { Public } from './auth.guard';
 
 /**
  * Controller for handling user-related requests.
@@ -27,6 +32,8 @@ export class UserController {
    * @param {CreateUserDto} createUserDto - DTO containing the user creation details.
    * @returns {Promise<UserResponse>} The newly created user, formatted as a UserResponse.
    */
+  @Public()
+  @HttpCode(HttpStatus.CREATED)
   @Post()
   async create(@Body() createUserDto: CreateUserDto): Promise<UserResponse> {
     return UserResponse.of(await this.userService.create(createUserDto));
@@ -38,6 +45,7 @@ export class UserController {
    * @returns {Promise<UserResponse[]>} An array of all users, each formatted as a UserResponse.
    */
   @Get()
+  @HttpCode(HttpStatus.OK)
   async findAll() {
     const users: User[] = await this.userService.findAll();
     return users.map((user) => UserResponse.of(user));
@@ -50,6 +58,7 @@ export class UserController {
    * @returns {Promise<UserResponse>} The user with the specified ID, formatted as a UserResponse.
    */
   @Get(':id')
+  @HttpCode(HttpStatus.OK)
   async findOne(@Param('id') id: string) {
     return UserResponse.of(await this.userService.findOne(id));
   }
@@ -61,6 +70,7 @@ export class UserController {
    * @param {UpdateUserDto} updateUserDto - DTO containing the updated user details.
    * @returns {Promise<UserResponse>} The updated user, formatted as a UserResponse.
    */
+  @HttpCode(HttpStatus.OK)
   @Patch(':id')
   async update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
     return UserResponse.of(await this.userService.update(id, updateUserDto));
@@ -72,8 +82,16 @@ export class UserController {
    * @param {string} id - The ID of the user to delete.
    * @returns An empty response, indicating the user was successfully deleted.
    */
+  @HttpCode(HttpStatus.OK)
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.userService.remove(id);
+  }
+
+  @Public()
+  @HttpCode(HttpStatus.OK)
+  @Post('login')
+  signIn(@Body() signInDto: SignInDto) {
+    return this.userService.signIn(signInDto);
   }
 }
